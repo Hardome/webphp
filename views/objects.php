@@ -2,20 +2,19 @@
 include 'config.php';
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-$sqlClients = "SELECT * FROM clients";
-$clients = mysqli_query($conn, $sqlClients);
+$sqlObjects = "SELECT * FROM objects";
+$objects = mysqli_query($conn, $sqlObjects);
 ?>
 
-<a href="objects">Объекты</a>
-<a href="rents">Аренды</a>
-<a href="queries">Запросы</a>
+<a href="clients">👤Клиенты</a>
+<a href="rents">🗎Аренды</a>
 
 
 <form action="../crud/create.php" method="POST">
 	<br>
-	<input type="hidden" value="client" name="entity">
-	<label for="id">Фамиллия:</label>
-	<input type="text" name="lastName">
+	<input type="hidden" value="object" name="entity">
+	<input type="number" name="type" placeholder="Тип">
+	<input type="number" name="price" placeholder="Цена">
 	<input type="submit" name="submit" value="Добавить">
 	<br>
 </form>
@@ -23,22 +22,24 @@ $clients = mysqli_query($conn, $sqlClients);
 <table>
 	<tr>
 		<td>id</td>
-		<td>Фамилия</td>
+		<td>Тип</td>
+		<td>Цена</td>
 	</tr>
-	<?php foreach ($clients as $value) { ?>
+	<?php foreach ($objects as $value) { ?>
 		<tr>
 			<td><?= $value['id'] ?> </td>
-			<td><?= $value['lastName'] ?></td>
+			<td><?= $value['type'] ?></td>
+			<td><?= $value['price'] ?></td>
 			<td>
-				<form action="./update.php" method="POST">
-					<input type="hidden" value="client" name="entity">
+				<form action="../views/update.php" method="POST">
+					<input type="hidden" value="object" name="entity">
 					<input type="hidden" value="<?= $value['id'] ?>" name="id">
 					<input type="submit" name="submit" value="Изменить">
 				</form>
 			</td>
 			<td>
 				<form action="../crud/delete.php" method="POST">
-					<input type="hidden" value="client" name="entity">
+					<input type="hidden" value="object" name="entity">
 					<input type="hidden" value="<?= $value['id'] ?>" name="id">
 					<input type="submit" name="submit" value="Удалить">
 				</form>

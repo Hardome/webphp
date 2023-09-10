@@ -4,11 +4,10 @@ include 'config.php';
 // Определение маршрутов
 $routes = [
 	// '/' => 'index.php',
-	 'clients' => 'clients.php',
-	 'objects' => 'objects.php',
-	 'rents' => 'rents.php',
-	 'update' => 'update.php',
-	 'queries' => 'queries.php'
+	 'clients' => './views/clients.php',
+	 'objects' => './views/objects.php',
+	 'rents' => './views/rents.php',
+	 'update' => './views/update.php'
 ];
 
 $url_array = explode('/', $_SERVER['REQUEST_URI']);

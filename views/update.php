@@ -1,5 +1,5 @@
 <?php
-include './config.php';
+include '../config.php';
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
@@ -77,20 +77,21 @@ if (isset($_POST['entity'])) {
 
 				foreach ($rents as $value) {
 				?>
-					<form action="../crud/create.php" method="POST">
+					<form action="../crud/update.php" method="POST">
 						<br>
 						<input type="hidden" value="rent" name="entity">
+						<input type="hidden" value="<?= $value['id'] ?>" name="id">
 						<select name="objectId">
+							<option value="<?= $value['objectId'] ?>" selected hidden><?= $value['objectId'] ?></option>
 							<?php foreach ($objects as $object) { ?>
 								<option value="<?= $object['id'] ?>"><?= $object['id'] ?></option>
 							<?php } ?>
-							<option value="<?= $value['objectId'] ?>" selected disabled hidden><?= $value['objectId'] ?></option>
 						</select>
 						<select name="clientId">
+							<option value="<?= $value['clientId'] ?>" selected hidden><?= $value['lastName'] ?></option>
 							<?php foreach ($сlients as $сlient) { ?>
 								<option value="<?= $сlient['id'] ?>"><?= $сlient['lastName'] ?></option>
 							<?php } ?>
-							<option value="<?= $value['clientId'] ?>" selected disabled hidden><?= $value['lastName'] ?></option>
 						</select>
 						<input type="date" name="dateRent" value="<?= $value['dateRent'] ?>">
 						<input type="number" name="rentDuration" placeholder="Количество месяцев" value="<?= $value['rentDuration'] ?>">

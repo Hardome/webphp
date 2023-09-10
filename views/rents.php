@@ -3,7 +3,7 @@ include 'config.php';
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 $sqlRents = "SELECT rents.id as id, objectId, clientId, dateRent, rentDuration, lastName 
-	 	FROM rents join clients on clients.id = rents.clientId";
+	 	FROM rents join clients on clients.id = rents.clientId order by rents.id";
 $rents = mysqli_query($conn, $sqlRents);
 
 $sqlClients = "SELECT * FROM clients";
@@ -13,10 +13,8 @@ $sqlObjects = "SELECT * FROM objects";
 $objects = mysqli_query($conn, $sqlObjects);
 ?>
 
-<a href="clients">Клиенты</a>
-<a href="objects">Объекты</a>
-<a href="queries">Запросы</a>
-
+<a href="clients">👤Клиенты</a>
+<a href="objects">🏠Объекты</a>
 
 <form action="../crud/create.php" method="POST">
 	<br>
@@ -57,7 +55,7 @@ $objects = mysqli_query($conn, $sqlObjects);
 			<td><?= $value['dateRent'] ?></td>
 			<td><?= $value['rentDuration'] ?></td>
 			<td>
-				<form action="./update.php" method="POST">
+				<form action="../views/update.php" method="POST">
 					<input type="hidden" value="rent" name="entity">
 					<input type="hidden" value="<?= $value['id'] ?>" name="id">
 					<input type="submit" name="submit" value="Изменить">
