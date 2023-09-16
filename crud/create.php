@@ -11,7 +11,6 @@ if (isset($_POST['entity'])) {
 
 	switch ($entity) {
 		case 'client':
-			// Логика для создания пользователя
 			if (isset($_POST['lastName'])) {
 				$lastName = $_POST['lastName'];
 

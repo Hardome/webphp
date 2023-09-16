@@ -15,6 +15,7 @@ $objects = mysqli_query($conn, $sqlObjects);
 
 <a href="clients">👤Клиенты</a>
 <a href="objects">🏠Объекты</a>
+<a href="queries">Запросы</a>
 
 <form action="../crud/create.php" method="POST">
 	<br>
@@ -37,7 +38,7 @@ $objects = mysqli_query($conn, $sqlObjects);
 	<br>
 </form>
 
-<table>
+<table border="black">
 	<tr>
 		<td>id</td>
 		<td>id объекта</td>

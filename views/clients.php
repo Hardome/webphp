@@ -8,6 +8,7 @@ $clients = mysqli_query($conn, $sqlClients);
 
 <a href="objects">🏠Объекты</a>
 <a href="rents">🗎Аренды</a>
+<a href="queries">Запросы</a>
 
 
 <form action="../crud/create.php" method="POST">
@@ -19,7 +20,7 @@ $clients = mysqli_query($conn, $sqlClients);
 	<br>
 </form>
 
-<table>
+<table border="black">
 	<tr>
 		<td>id</td>
 		<td>Фамилия</td>

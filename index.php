@@ -7,7 +7,8 @@ $routes = [
 	 'clients' => './views/clients.php',
 	 'objects' => './views/objects.php',
 	 'rents' => './views/rents.php',
-	 'update' => './views/update.php'
+	 'update' => './views/update.php',
+	 'queries' => './views/queries.php'
 ];
 
 $url_array = explode('/', $_SERVER['REQUEST_URI']);
