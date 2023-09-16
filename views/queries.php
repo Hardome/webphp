@@ -178,6 +178,7 @@ $objects = mysqli_query($conn, $sqlObjects);
 <div>Запрос 8</div>
 <form action="../requests/eightQuery.php" method="POST">
 	<br>
+  <label for="quarter">Квартал:</label>
 	<input type="number" name="quarter">
   <input type="date" name="year">
 	<input type="submit" name="submit" value="Выполнить">
