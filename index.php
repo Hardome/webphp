@@ -2,7 +2,7 @@
 $fileContent = file_get_contents('./html.htm');
 $regex = '/<!-- Header Menu -->(.*?)<!--End of Header Menu-->/s';
 
-// Проверка, удалось ли прочитать файл
+// удалось ли прочитать файл
 if ($fileContent !== false) {
 
 	if (preg_match($regex, $fileContent, $matches)) {
@@ -13,33 +13,31 @@ if ($fileContent !== false) {
 
 		if (preg_match_all($cellRegex, $extractedContent, $matches)) {
 			$extractedContent2 = $matches[1];
-		//	echo $extractedContent2;
 
-			$mergedContent = implode("\n", $extractedContent2);
+			$mergedContent = implode("\n", $extractedContent2); //джоин в строку
 
-			$cleanedStr = preg_replace('/&nbsp;/', '', $mergedContent);
+			$cleanedStr = preg_replace('/&nbsp;/', '', $mergedContent); //очищаю от nbsp
 			echo $cleanedStr;
 
-			$convertedString = iconv('UTF-8', 'Windows-1252', $cleanedStr);
-			//$convertedString = mb_convert_encoding('UTF-8', 'Windows-1252', $cleanedStr);
+			$convertedString = iconv('Windows-1251', 'UTF-8', $cleanedStr); //меняю кодировку строки
 			echo $convertedString;
 
 			$regex = '/\bУ\w+/u';
-			preg_match_all($regex, $cleanedStr, $matches);
+			preg_match_all($regex, $convertedString, $matches);
 			$wordCount = count($matches[0]);
 			
 			echo "Количество слов, начинающихся на У: " . $wordCount;
 
-			$file = 'text.txt';
-
-			// Запись совпадений в файл
-			file_put_contents($file, $cleanedStr);
+			$strToFile = $cleanedStr . "\n" . $wordCount;
+			
+			file_put_contents("text.txt", $strToFile); // Запись в файл
 		} else {
-			echo 'Контент не найден. 2';
+			echo 'Контент не найден 2';
 		}
 	} else {
-		echo 'Контент не найден.';
+		echo 'Контент не найден';
 	}
 } else {
-	echo 'Ошибка чтения файла.';
+	echo 'Ошибка чтения файла';
 }
+?>
