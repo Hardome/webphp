@@ -1,24 +1,45 @@
 <?php
-include 'config.php';
+$fileContent = file_get_contents('./html.htm');
+$regex = '/<!-- Header Menu -->(.*?)<!--End of Header Menu-->/s';
 
-// Определение маршрутов
-$routes = [
-	// '/' => 'index.php',
-	 'clients' => './views/clients.php',
-	 'objects' => './views/objects.php',
-	 'rents' => './views/rents.php',
-	 'update' => './views/update.php',
-	 'queries' => './views/queries.php'
-];
+// Проверка, удалось ли прочитать файл
+if ($fileContent !== false) {
 
-$url_array = explode('/', $_SERVER['REQUEST_URI']);
+	if (preg_match($regex, $fileContent, $matches)) {
+		$extractedContent = $matches[0];
+		echo $extractedContent;
 
-$entity = $url_array[1] ?? '';
-$action = $url_array[2] ?? '';
+		$cellRegex = '/<a[^>]*>(.*?)<\/a>/';
 
-if ($url_array[1] == "") {
-  include 'index.php';
+		if (preg_match_all($cellRegex, $extractedContent, $matches)) {
+			$extractedContent2 = $matches[1];
+		//	echo $extractedContent2;
+
+			$mergedContent = implode("\n", $extractedContent2);
+
+			$cleanedStr = preg_replace('/&nbsp;/', '', $mergedContent);
+			echo $cleanedStr;
+
+			$convertedString = iconv('UTF-8', 'Windows-1252', $cleanedStr);
+			//$convertedString = mb_convert_encoding('UTF-8', 'Windows-1252', $cleanedStr);
+			echo $convertedString;
+
+			$regex = '/\bУ\w+/u';
+			preg_match_all($regex, $cleanedStr, $matches);
+			$wordCount = count($matches[0]);
+			
+			echo "Количество слов, начинающихся на У: " . $wordCount;
+
+			$file = 'text.txt';
+
+			// Запись совпадений в файл
+			file_put_contents($file, $cleanedStr);
+		} else {
+			echo 'Контент не найден. 2';
+		}
+	} else {
+		echo 'Контент не найден.';
+	}
 } else {
-	include $routes[$entity];
+	echo 'Ошибка чтения файла.';
 }
-?>
