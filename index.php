@@ -7,7 +7,6 @@ if ($fileContent !== false) {
 
 	if (preg_match($regex, $fileContent, $matches)) {
 		$extractedContent = $matches[0];
-		echo $extractedContent;
 
 		$cellRegex = '/<a[^>]*>(.*?)<\/a>/';
 
@@ -17,27 +16,28 @@ if ($fileContent !== false) {
 			$mergedContent = implode("\n", $extractedContent2); //джоин в строку
 
 			$cleanedStr = preg_replace('/&nbsp;/', '', $mergedContent); //очищаю от nbsp
-			echo $cleanedStr;
 
 			$convertedString = iconv('Windows-1251', 'UTF-8', $cleanedStr); //меняю кодировку строки
-			echo $convertedString;
 
-			$regex = '/\bУ\w+/u';
-			preg_match_all($regex, $convertedString, $matches);
+			$letterRegex = '/\bУ\w+/u';
+			preg_match_all($letterRegex, $convertedString, $matches);
 			$wordCount = count($matches[0]);
-			
-			echo "Количество слов, начинающихся на У: " . $wordCount;
 
 			$strToFile = $cleanedStr . "\n" . $wordCount;
 			
 			file_put_contents("text.txt", $strToFile); // Запись в файл
 		} else {
-			echo 'Контент не найден 2';
+			echo 'Контент не найден во второй регулярке';
 		}
 	} else {
-		echo 'Контент не найден';
+		echo 'Контент не найден в первой регулярке';
 	}
 } else {
 	echo 'Ошибка чтения файла';
 }
 ?>
+
+<p><?=$extractedContent?></p>
+<p><?=$cleanedStr?></p>
+<p><?=$convertedString?></p>
+<p>Количество слов, начинающихся на У:<?=$wordCount?></p>
