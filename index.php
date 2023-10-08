@@ -1,14 +1,14 @@
 <?php
-include 'config.php';
 
-// Определение маршрутов
 $routes = [
 	// '/' => 'index.php',
-	 'clients' => './views/clients.php',
-	 'objects' => './views/objects.php',
-	 'rents' => './views/rents.php',
-	 'update' => './views/update.php',
-	 'queries' => './views/queries.php'
+	 'first' => './views/first.php',
+	 'second' => './views/second.php',
+	 'third' => './views/third.php',
+	 'fourth' => './views/fourth.php',
+	 'fifth' => './views/fifth.php',
+	 'randomBanner' => './views/randomBanner.php',
+	 'stats' => './views/stats.php'
 ];
 
 $url_array = explode('/', $_SERVER['REQUEST_URI']);
