@@ -1,7 +1,7 @@
 <?php
 $fileContent = file_get_contents('counter.txt');
 $counters = json_decode($fileContent, true);
-echo $fileContent;
+//echo $fileContent;
 
 $firstCTR = round($counters['pagesViews']['first'] / $counters['bannerViews']['1'], 2) * 100;
 $secondCTR = round($counters['pagesViews']['second'] / $counters['bannerViews']['2'], 2) * 100;
@@ -9,7 +9,8 @@ $thirdCTR = round($counters['pagesViews']['third'] / $counters['bannerViews']['3
 $fourthCTR = round($counters['pagesViews']['fourth'] / $counters['bannerViews']['4'], 2) * 100;
 $fifthCTR = round($counters['pagesViews']['fifth'] / $counters['bannerViews']['5'], 2) * 100;
 
-$allViews = $counters['bannerViews']['1'] + $counters['bannerViews']['2'] + $counters['bannerViews']['3'] + $counters['bannerViews']['4'] + $counters['bannerViews']['5'];
+$allViews = $counters['bannerViews']['1'] + $counters['bannerViews']['2'] + 
+  $counters['bannerViews']['3'] + $counters['bannerViews']['4'] + $counters['bannerViews']['5'];
 
 $firstCTI = round($counters['pagesViews']['first'] / $allViews, 2);
 $secondCTI = round($counters['pagesViews']['second'] / $allViews, 2);
@@ -25,6 +26,12 @@ $fifthCTB = $counters['actions']['fifth'] / $counters['pagesViews']['fifth'];
 
 ?>
 
+
+<link rel='stylesheet' href='views/styles.css'>
+<div class="link">
+  <a href="/randomBanner">Рандомные баннера</a>
+  <a href="/stats">Статистика</a>
+</div>
 
 <div>CTR первого баннера: <?= $firstCTR ?>%</div>
 <div>CTR второго баннера: <?= $secondCTR ?>%</div>

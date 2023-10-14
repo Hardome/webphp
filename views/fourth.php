@@ -1,6 +1,6 @@
 <?php
 $fileContent = file_get_contents('../counter.txt');
-$counters = json_decode($fileContent, true); // Преобразование данных в ассоциативный массив
+$counters = json_decode($fileContent, true);
 
 if (isset($counters['pagesViews']['fourth'])) {
 	$counters['pagesViews']['fourth']++;
@@ -13,8 +13,14 @@ file_put_contents('../counter.txt', $fileData);
 
 $fileContent = file_get_contents('../txt/Fourth.txt');
 
-$convertedString = iconv('WINDOWS-1251', 'UTF-8', $fileContent); //меняю кодировку строки
+$convertedString = iconv('WINDOWS-1251', 'UTF-8', $fileContent);
 ?>
+
+<link rel='stylesheet' href='views/styles.css'>
+<div class="link">
+  <a href="/randomBanner">Рандомные баннера</a>
+  <a href="/stats">Статистика</a>
+</div>
 
 <form action="../actions/upPageActions.php" method="POST">
 	<br>

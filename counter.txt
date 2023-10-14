@@ -1,1 +1,1 @@
-{"actions":{"first":12,"second":13,"fifth":8,"fourth":2,"third":1},"bannerViews":{"5":21,"2":9,"1":11,"3":9,"4":6},"pagesViews":{"first":3,"second":21,"third":3,"fifth":10,"fourth":13}}
+{"actions":{"first":16,"second":28,"fifth":9,"fourth":2,"third":8},"bannerViews":{"5":48,"2":37,"1":31,"3":26,"4":22},"pagesViews":{"first":8,"second":42,"third":13,"fifth":13,"fourth":13}}

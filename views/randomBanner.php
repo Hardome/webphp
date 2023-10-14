@@ -32,6 +32,12 @@ $pages = [
 $bannerPath =  $banners[$number];
 $pagePath =  $pages[$number];
 ?>
-<a href=<?php echo $pagePath ?>>
-  <img src=<?php echo $bannerPath ?> alt="" />
-</a>
+
+<link rel='stylesheet' href='views/styles.css'>
+<div class="link">
+  <a href="/stats">Статистика</a>
+  <a href=<?php echo $pagePath ?>>
+    <img src=<?php echo $bannerPath ?> alt="" />
+  </a>
+</div>
+
