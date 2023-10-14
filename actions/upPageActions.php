@@ -17,5 +17,14 @@ if (isset($_POST['page'])) {
 			$fileData = json_encode($counters);
 			file_put_contents('../counter.txt', $fileData);
 
-			header('Location: ../views/' . $page . '.php');
+			$routes = [
+				// '/' => 'index.php',
+				 '1' => './views/first.php',
+				 '2' => './views/second.php',
+				 '3' => './views/third.php',
+				 '4' => './views/fourth.php',
+				 '5' => './views/fifth.php'
+			];
+
+			header('Location: ../' . $routes[$page]);
 }
