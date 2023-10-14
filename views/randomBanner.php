@@ -21,22 +21,13 @@ $banners = [
   '5' => '../banners/05.gif'
 ];
 
-$pages = [
-  '1' => './views/first.php',
-  '2' => './views/second.php',
-  '3' => './views/third.php',
-  '4' => './views/fourth.php',
-  '5' => './views/fifth.php'
-];
-
 $bannerPath =  $banners[$number];
-$pagePath =  $pages[$number];
 ?>
 
 <link rel='stylesheet' href='views/styles.css'>
 <div class="link">
   <a href="/stats">Статистика</a>
-  <a href=<?php echo $pagePath ?>>
+  <a href="upPVFB/?page=<?php echo $number ?>">
     <img src=<?php echo $bannerPath ?> alt="" />
   </a>
 </div>

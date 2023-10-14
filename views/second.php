@@ -1,6 +1,8 @@
 <?php
-$fileContent = file_get_contents('../counter.txt');
+$fileContent = file_get_contents('./counter.txt');
 $counters = json_decode($fileContent, true);
+
+$fromBanner =  $_GET['fromBanner'] ?? '';
 
 if (isset($counters['pagesViews']['2'])) {
 	$counters['pagesViews']['2']++;
@@ -9,9 +11,9 @@ if (isset($counters['pagesViews']['2'])) {
 }
 
 $fileData = json_encode($counters);
-file_put_contents('../counter.txt', $fileData);
+file_put_contents('./counter.txt', $fileData);
 
-$lines = file('../txt/Second.txt');
+$lines = file('./txt/Second.txt');
 ?>
 
 <link rel='stylesheet' href='styles.css'>
@@ -23,6 +25,7 @@ $lines = file('../txt/Second.txt');
 <form action="../actions/upPageActions.php" method="POST">
 	<br>
 	<input type="hidden" value="2" name="page">
+	<input type="hidden" value="<?= $fromBanner ?>" name="fromBanner">
 	<input type="submit" name="submit" value="Заказать">
 	<br>
 </form>

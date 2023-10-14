@@ -8,9 +8,9 @@ $CTI = [];
 $CTB = [];
 
 for ($i = 1; $i <= 5; $i++) {
-    $CTR[$i] = round($counters['pagesViews'][$i] / $counters['bannerViews'][$i], 2) * 100;
-    $CTI[$i] = round($counters['pagesViews'][$i] / array_sum($counters['bannerViews']), 2);
-    $CTB[$i] = round($counters['actions'][$i] / $counters['pagesViews'][$i], 2);
+    $CTR[$i] = round($counters['pagesViewsByBanner'][$i] / $counters['bannerViews'][$i], 2) * 100;
+    $CTI[$i] = round($counters['pagesViewsByBanner'][$i] / $counters['pagesViews'][$i], 3);
+    $CTB[$i] = round($counters['actions'][$i] / $counters['pagesViewsByBanner'][$i], 3);
 }
 ?>
 
