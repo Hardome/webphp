@@ -2,12 +2,26 @@
 $fileContent = file_get_contents('./counter.txt');
 $counters = json_decode($fileContent, true);
 
-$fromBanner =  $_GET['fromBanner'] ?? '';
+$submit =  $_GET['submit'] ?? null;
+$fromBanner =  $_GET['fromBanner'] ?? null;
+$page = 3;
 
-if (isset($counters['pagesViews']['3'])) {
-	$counters['pagesViews']['3']++;
-} else {
-	$counters['pagesViews']['3'] = 1;
+if (!isset($submit)) {
+	if (isset($fromBanner)) {
+		//просмотры с баннера
+		if (isset($counters['pagesViewsFromBanner'][$page])) {
+			$counters['pagesViewsFromBanner'][$page]++;
+		} else {
+			$counters['pagesViewsFromBanner'][$page] = 1;
+		}
+	} else {
+		//обычные просмотры страницы
+		if (isset($counters['pagesViews'][$page])) {
+			$counters['pagesViews'][$page]++;
+		} else {
+			$counters['pagesViews'][$page] = 1;
+		}
+	}
 }
 
 $fileData = json_encode($counters);

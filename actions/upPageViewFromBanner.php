@@ -8,15 +8,15 @@ $pages = [
   '5' => 'fifth'
 ];
 
-$fileContent = file_get_contents('../counter.txt');
+$fileContent = file_get_contents('./counter.txt');
 $counters = json_decode($fileContent, true);
 
-if (isset($counters['pagesViewsByBanner'][$page])) {
-  $counters['pagesViewsByBanner'][$page]++;
+if (isset($counters['bannerAction'][$page])) {
+  $counters['bannerAction'][$page]++;
 } else {
-  $counters['pagesViewsByBanner'][$page] = 1;
+  $counters['bannerAction'][$page] = 1;
 }
 $fileData = json_encode($counters);
-file_put_contents('../counter.txt', $fileData);
+file_put_contents('./counter.txt', $fileData);
 
 header('Location: ../' . $pages[$page] . '/?fromBanner=true');

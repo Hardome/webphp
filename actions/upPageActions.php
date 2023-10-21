@@ -29,9 +29,9 @@ if (isset($_POST['page'])) {
 	];
 
 	if ($fromBanner === 'true'){
-		header('Location: ../' . $routes[$page] . '/?fromBanner=' . $fromBanner);
+		header('Location: ../' . $routes[$page] . '/?fromBanner=' . $fromBanner . '&submit=true');
 	}
 	else {
-		header('Location: ../' . $routes[$page]);
+		header('Location: ../' . $routes[$page] . '/?submit=true');
 	}
 }
