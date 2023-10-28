@@ -2,15 +2,8 @@
 
 $routes = [
 	// '/' => 'index.php',
-	'parse' => './views/parse.php',
-	'stats' => './views/stats.php',
 	'request' => './views/request.php',
-	//  'third' => './views/third.php',
-	//  'fourth' => './views/fourth.php',
-	//  'fifth' => './views/fifth.php',
-	//  'randomBanner' => './views/randomBanner.php',
-	//  'upPageActions' => './actions/upPageActions.php',
-	//  'upPVFB' => './actions/upPageViewFromBanner.php'
+	'view' => './views/viewTxt.php'
 ];
 
 $url_array = explode('/', $_SERVER['REQUEST_URI']);
