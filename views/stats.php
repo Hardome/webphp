@@ -99,7 +99,7 @@ foreach ($lines as $line) {
   }
 }
 $mansAverageHeight = round($mansHeight / $mansCount);
-$mansAverageWeight = round($womansWeight / $mansCount);
+$mansAverageWeight = round($mansWeight / $mansCount);
 $mansAverageAge = round($mansAge / $mansCount);
 
 $womansAverageHeight = round($womansHeight / $womansCount);
