@@ -3,7 +3,8 @@
 $routes = [
 	// '/' => 'index.php',
 	'request' => './views/request.php',
-	'view' => './views/viewTxt.php'
+	'view' => './views/viewTxt.php',
+	'words' => './views/words.php'
 ];
 
 $url_array = explode('/', $_SERVER['REQUEST_URI']);

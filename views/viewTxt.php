@@ -2,8 +2,6 @@
 
 $pageNumber = $_GET['page'];
 
-var_dump($pageNumber);
-
 $pages = [
   '1' => './txt/1.txt',
   '2' => './txt/2.txt',
@@ -38,10 +36,6 @@ if($pageNumber) {
   foreach ($lines as $line) {
     $correctEncode[] = iconv('Windows-1251', 'UTF-8', $line);
   }
-
-  
-
-
 } else {
 	echo 'Ведите в поисковой строке номер страницы (1-10)';
 }
@@ -49,12 +43,13 @@ if($pageNumber) {
 
 <link rel='stylesheet' href='../views/styles.css'>
 <div class="links">
-	<a href="/stats">Статистика</a>
-	<a href="/parse">Парсер</a>
+	<a href="../words">Слова</a>
 </div>
 
-<?php foreach ($correctEncode as $line) { ?>
-	<div class="resident">
-			<?= $line ?>
-	</div>
+<?php if (strlen($pageNumber) > 0) { ?>
+  <?php foreach ($correctEncode as $line) { ?>
+    <div class="resident">
+        <?= $line ?>
+    </div>
+  <?php } ?>
 <?php } ?>
