@@ -45,7 +45,25 @@
 	}
 
 	$arrToFile = [];
-	$errorCount = 0; //количество ошибок
+	$errorsCount = [
+		'id' => 0,
+		'name' => 0,
+		'middleName' => 0,
+		'lastName' => 0,
+		'sex' => 0,
+		'city' => 0,
+		'region' => 0,
+		'email' => 0,
+		'phone' => 0,
+		'birthDay' => 0,
+		'position' => 0,
+		'company' => 0,
+		'weight' => 0,
+		'height' => 0,
+		'postAddress' => 0,
+		'postCode' => 0,
+		'countryCode' => 0
+	]; //количество ошибок
 
 	foreach ($lines as $line) {
 		$values = explode(',', $line);
@@ -75,6 +93,24 @@
 		$postCode = $valuesCount >= 16 ? filter_var($values[15], FILTER_VALIDATE_INT) : null; //Целое число
 		$countryCode = $valuesCount >= 17 ? validate($values[16], '/^[A-Za-zА-Яа-я]{2}$/') : null; //Двухбуквенный код
 
+		$id === null && $errorsCount['id']++;
+		$name === null && $errorsCount['name']++;
+		$middleName === null && $errorsCount['middleName']++;
+		$lastName === null && $errorsCount['lastName']++;
+		$sex === null && $errorsCount['sex']++;
+		$city === null && $errorsCount['city']++;
+		$region === null && $errorsCount['region']++;
+		$email === null && $errorsCount['email']++;
+		$phone === null && $errorsCount['phone']++;
+		$birthDay === null && $errorsCount['birthDay']++;
+		$position === null && $errorsCount['position']++;
+		$company === null && $errorsCount['company']++;
+		$weight === null && $errorsCount['weight']++;
+		$height === null && $errorsCount['height']++;
+		$postAddress === null && $errorsCount['postAddress']++;
+		$postCode === null && $errorsCount['postCode']++;
+		$countryCode === null && $errorsCount['countryCode']++;
+
 		array_push(
 			$validValues, 
 			$id,
@@ -100,6 +136,7 @@
 		//запись в файл
 		array_push($arrToFile, $strToArray);
 	}
+	var_dump($errorsCount);
 
 	file_put_contents('./newBase.txt', $arrToFile);
 ?>
@@ -107,10 +144,10 @@
 <link rel='stylesheet' href='./views/styles.css'>
 <div class="links">
   <a href="/stats">Статистика</a>
-	<a href="/request">Get-запрос</a>
+	<a href="/request/?region=">Get-запрос</a>
 </div>
 
-<?php foreach ($arrToFile as $line) { ?>
-  <div><?= $line ?></div>
+<?php //foreach ($arrToFile as $line) { ?>
+  <!-- <div><?= $line ?></div> -->
   <hr>
-<?php } ?>
+<?php //} ?>

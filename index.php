@@ -2,9 +2,9 @@
 
 $routes = [
 	// '/' => 'index.php',
-	 'parse' => './views/parse.php',
-	 'stats' => './views/stats.php',
-	//  'second' => './views/second.php',
+	'parse' => './views/parse.php',
+	'stats' => './views/stats.php',
+	'request' => './views/request.php',
 	//  'third' => './views/third.php',
 	//  'fourth' => './views/fourth.php',
 	//  'fifth' => './views/fifth.php',

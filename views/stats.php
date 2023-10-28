@@ -47,16 +47,33 @@ $womansAboveAverageHeightCount = 0;
 $womansAboveAverageWeightCount = 0;
 $womansAboveAverageAgeCount = 0;
 
-$dates = ['01/01', '07/01', '14/02', '23/02', '08/03', '01/05, 31/12'];
+$specialDates = ['01/01', '01/07', '02/14', '02/23', '03/08', '05/01', '12/31'];
+
+$people = [];
+
+function isSpecialDate($date) {
+  global $specialDates;
+  return in_array($date, $specialDates);
+}
 
 //считаю среднее
 foreach ($lines as $line) {
   $values = explode(';', $line);
 
   $sex = $values[4];
+  $name = $values[1];
   $weight = isset($values[12]) ? intval($values[12]) : null;
   $height = isset($values[13]) ? intval($values[13]) : null;
   $birthday = isset($values[9]) ? DateTime::createFromFormat('m/d/Y', $values[9]) : null;
+
+  $birthdate = date('m/d', strtotime($values[9]));
+
+  if (isSpecialDate($birthdate)) {
+    if (!isset($people[$birthdate])) {
+        $people[$birthdate] = [];
+    }
+    $people[$birthdate][] = $name;
+}
 
   if ($birthday) {
     $today = new DateTime();
@@ -192,7 +209,7 @@ foreach ($womansAgeArray as $age) {
 <link rel='stylesheet' href='./views/styles.css'>
 <div class="links">
   <a href="/parse">Парсер</a>
-  <a href="/request">Get-запрос</a>
+  <a href="/request/?region=">Get-запрос</a>
 </div>
 
 
@@ -285,3 +302,8 @@ foreach ($womansAgeArray as $age) {
     <td><?= $womansAboveAverageAgeCount ?></td>
   </tr>
 </table>
+
+<?php foreach ($people as $birthdate => $names) { ?>
+  <div class="bold">День: <?= $birthdate ?></div>
+  <div>Имена: <?= implode(', ', $names) ?></div>
+<?php } ?>

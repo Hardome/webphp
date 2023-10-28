@@ -27,3 +27,20 @@ td {
 table {
   margin-top: 15px;
 }
+
+.bold{
+  font-weight: 800;
+}
+
+.resident{
+  display: flex;
+  gap: 5px;
+
+  .blue {
+    color: blue;
+  }
+
+  .pink {
+    color: pink;
+  }
+}
