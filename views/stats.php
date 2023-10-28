@@ -60,10 +60,16 @@ function isSpecialDate($date) {
 foreach ($lines as $line) {
   $values = explode(';', $line);
 
+  $valuesCount = count($values);
+
+  if (6 > $valuesCount) {
+    continue; //если вообще нет ничего, пропуск строки
+  }
+
   $sex = $values[4];
   $name = $values[1];
   $weight = isset($values[12]) ? intval($values[12]) : null;
-  $height = isset($values[13]) ? intval($values[13]) : 0;
+  $height = isset($values[13]) ? intval($values[13]) : null;
   $birthday = isset($values[9]) ? DateTime::createFromFormat('m/d/Y', $values[9]) : null;
 
   $birthdate = date('m/d', strtotime($values[9]));

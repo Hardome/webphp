@@ -99,122 +99,105 @@
 			array_push($validValues, $id);
 		} else {
 			$errorsCount['id']++;
-			array_push($validValues, $id);
 		}
 		
 		if(isset($name)){
 			array_push($validValues, $name);
 		} else {
 			$errorsCount['name']++;
-			array_push($validValues, $name);
 		}
 
 		if(isset($middleName)){
 			array_push($validValues, $middleName);
 		} else {
 			$errorsCount['middleName']++;	
-			array_push($validValues, $middleName);
 		}
 
 		if(isset($lastName)){
 			array_push($validValues, $lastName);
 		} else {
 			$errorsCount['lastName']++;	
-			array_push($validValues, $lastName);
 		}
 
 		if(isset($sex)){
 			array_push($validValues, $sex);
 		} else {
 			$errorsCount['sex']++;	
-			array_push($validValues, $sex);
 		}
 
 		if(isset($city)){
 			array_push($validValues, $city);
 		} else {
 			$errorsCount['city']++;	
-			array_push($validValues, $city);
 		}
 
 		if(isset($region)){
 			array_push($validValues, $region);
 		} else {
 			$errorsCount['region']++;	
-			array_push($validValues, $region);
 		}
 
 		if(isset($email)){
 			array_push($validValues, $email);
 		} else {
 			$errorsCount['email']++;	
-			array_push($validValues, $email);
 		}
 
 		if(isset($phone)){
 			array_push($validValues, $phone);
 		} else {
 			$errorsCount['phone']++;
-			array_push($validValues, $phone);
 		}
 
 		if(isset($birthDay)){
 			array_push($validValues, $birthDay);
 		} else {
 			$errorsCount['birthDay']++;	
-			array_push($validValues, $birthDay);
 		}
 
 		if(isset($position)){
 			array_push($validValues, $position);
 		} else {
 			$errorsCount['position']++;	
-			array_push($validValues, $position);
 		}
 
 		if(isset($company)){
 			array_push($validValues, $company);
 		} else {
 			$errorsCount['company']++;	
-			array_push($validValues, $company);
 		}
 
 		if(isset($weight)){
 			array_push($validValues, $weight);
 		} else {
 			$errorsCount['weight']++;	
-			array_push($validValues, $weight);
 		}
 
 		if(isset($height)){
 			array_push($validValues, $height);
 		} else {
 			$errorsCount['height']++;	
-			array_push($validValues, $height);
 		}
 
 		if(isset($postAddress)){
 			array_push($validValues, $postAddress);
 		} else {
 			$errorsCount['postAddress']++;	
-			array_push($validValues, $postAddress);
 		}
 
 		if(isset($postCode)){
 			array_push($validValues, $postCode);
 		} else {
 			$errorsCount['postCode']++;	
-			array_push($validValues, $postCode);
 		}
 
 		if(isset($countryCode)){
 			array_push($validValues, $countryCode);
 		} else {
 			$errorsCount['countryCode']++;	
-			array_push($validValues, $countryCode);
 		}
 		
-		if(count($validValues) > 0) {
+		if(count($validValues) > 16) { //если все поля валидные
 			$strToArray = implode(';', $validValues) . "\n";
 
 			//запись в файл
