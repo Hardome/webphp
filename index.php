@@ -3,12 +3,12 @@
 $routes = [
 	// '/' => 'index.php',
 	 'parse' => './views/parse.php',
+	 'stats' => './views/stats.php',
 	//  'second' => './views/second.php',
 	//  'third' => './views/third.php',
 	//  'fourth' => './views/fourth.php',
 	//  'fifth' => './views/fifth.php',
 	//  'randomBanner' => './views/randomBanner.php',
-	//  'stats' => './views/stats.php',
 	//  'upPageActions' => './actions/upPageActions.php',
 	//  'upPVFB' => './actions/upPageViewFromBanner.php'
 ];

@@ -15,3 +15,15 @@
 .div {
   min-height: 15px;
 }
+
+table, th{
+  border: 1px solid black;
+}
+
+td {
+  border: 1px solid rgb(111, 115, 119);
+}
+
+table {
+  margin-top: 15px;
+}
