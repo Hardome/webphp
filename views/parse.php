@@ -93,51 +93,134 @@
 		$postCode = $valuesCount >= 16 ? filter_var($values[15], FILTER_VALIDATE_INT) : null; //Целое число
 		$countryCode = $valuesCount >= 17 ? validate($values[16], '/^[A-Za-zА-Яа-я]{2}$/') : null; //Двухбуквенный код
 
-		$id === null && $errorsCount['id']++;
-		$name === null && $errorsCount['name']++;
-		$middleName === null && $errorsCount['middleName']++;
-		$lastName === null && $errorsCount['lastName']++;
-		$sex === null && $errorsCount['sex']++;
-		$city === null && $errorsCount['city']++;
-		$region === null && $errorsCount['region']++;
-		$email === null && $errorsCount['email']++;
-		$phone === null && $errorsCount['phone']++;
-		$birthDay === null && $errorsCount['birthDay']++;
-		$position === null && $errorsCount['position']++;
-		$company === null && $errorsCount['company']++;
-		$weight === null && $errorsCount['weight']++;
-		$height === null && $errorsCount['height']++;
-		$postAddress === null && $errorsCount['postAddress']++;
-		$postCode === null && $errorsCount['postCode']++;
-		$countryCode === null && $errorsCount['countryCode']++;
 
-		array_push(
-			$validValues, 
-			$id,
-			$name, 
-			$middleName, 
-			$lastName, 
-			$sex, 
-			$city, 
-			$region, 
-			$email, 
-			$phone, 
-			$birthDay, 
-			$position, 
-			$company, 
-			$weight,
-			$height,
-			$postAddress,
-			$postCode,
-			$countryCode
-		);
-		$strToArray = implode(';', $validValues) . "\n";
+		
+		if(isset($id)){
+			array_push($validValues, $id);
+		} else {
+			$errorsCount['id']++;
+			array_push($validValues, $id);
+		}
+		
+		if(isset($name)){
+			array_push($validValues, $name);
+		} else {
+			$errorsCount['name']++;
+			array_push($validValues, $name);
+		}
 
-		//запись в файл
-		array_push($arrToFile, $strToArray);
+		if(isset($middleName)){
+			array_push($validValues, $middleName);
+		} else {
+			$errorsCount['middleName']++;	
+			array_push($validValues, $middleName);
+		}
+
+		if(isset($lastName)){
+			array_push($validValues, $lastName);
+		} else {
+			$errorsCount['lastName']++;	
+			array_push($validValues, $lastName);
+		}
+
+		if(isset($sex)){
+			array_push($validValues, $sex);
+		} else {
+			$errorsCount['sex']++;	
+			array_push($validValues, $sex);
+		}
+
+		if(isset($city)){
+			array_push($validValues, $city);
+		} else {
+			$errorsCount['city']++;	
+			array_push($validValues, $city);
+		}
+
+		if(isset($region)){
+			array_push($validValues, $region);
+		} else {
+			$errorsCount['region']++;	
+			array_push($validValues, $region);
+		}
+
+		if(isset($email)){
+			array_push($validValues, $email);
+		} else {
+			$errorsCount['email']++;	
+			array_push($validValues, $email);
+		}
+
+		if(isset($phone)){
+			array_push($validValues, $phone);
+		} else {
+			$errorsCount['phone']++;
+			array_push($validValues, $phone);
+		}
+
+		if(isset($birthDay)){
+			array_push($validValues, $birthDay);
+		} else {
+			$errorsCount['birthDay']++;	
+			array_push($validValues, $birthDay);
+		}
+
+		if(isset($position)){
+			array_push($validValues, $position);
+		} else {
+			$errorsCount['position']++;	
+			array_push($validValues, $position);
+		}
+
+		if(isset($company)){
+			array_push($validValues, $company);
+		} else {
+			$errorsCount['company']++;	
+			array_push($validValues, $company);
+		}
+
+		if(isset($weight)){
+			array_push($validValues, $weight);
+		} else {
+			$errorsCount['weight']++;	
+			array_push($validValues, $weight);
+		}
+
+		if(isset($height)){
+			array_push($validValues, $height);
+		} else {
+			$errorsCount['height']++;	
+			array_push($validValues, $height);
+		}
+
+		if(isset($postAddress)){
+			array_push($validValues, $postAddress);
+		} else {
+			$errorsCount['postAddress']++;	
+			array_push($validValues, $postAddress);
+		}
+
+		if(isset($postCode)){
+			array_push($validValues, $postCode);
+		} else {
+			$errorsCount['postCode']++;	
+			array_push($validValues, $postCode);
+		}
+
+		if(isset($countryCode)){
+			array_push($validValues, $countryCode);
+		} else {
+			$errorsCount['countryCode']++;	
+			array_push($validValues, $countryCode);
+		}
+		
+		if(count($validValues) > 0) {
+			$strToArray = implode(';', $validValues) . "\n";
+
+			//запись в файл
+			array_push($arrToFile, $strToArray);
+		}
 	}
-	var_dump($errorsCount);
-
 	file_put_contents('./newBase.txt', $arrToFile);
 ?>
 
@@ -147,7 +230,12 @@
 	<a href="/request/?region=">Get-запрос</a>
 </div>
 
-<?php //foreach ($arrToFile as $line) { ?>
-  <!-- <div><?= $line ?></div> -->
-  <hr>
-<?php //} ?>
+<div>Ошибки</div>
+<table>
+	<?php foreach ($errorsCount as $key => $value): ?>
+		<tr>
+			<td><?php echo $key; ?></td> 
+			<td><?php echo $value; ?></td>
+		</tr>
+	<?php endforeach; ?>
+</table>

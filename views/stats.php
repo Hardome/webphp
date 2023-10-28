@@ -63,7 +63,7 @@ foreach ($lines as $line) {
   $sex = $values[4];
   $name = $values[1];
   $weight = isset($values[12]) ? intval($values[12]) : null;
-  $height = isset($values[13]) ? intval($values[13]) : null;
+  $height = isset($values[13]) ? intval($values[13]) : 0;
   $birthday = isset($values[9]) ? DateTime::createFromFormat('m/d/Y', $values[9]) : null;
 
   $birthdate = date('m/d', strtotime($values[9]));
