@@ -9,6 +9,7 @@ class IndexController extends Controller
   public function index()
   {
     $header = 'Резюме и вакансии';
+    
     return view('page', ['header' => $header]);
   }
 
