@@ -13,11 +13,6 @@ use App\Http\Controllers\IndexController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/resume', [
     IndexController::class, 'index'
 ]);
@@ -30,6 +25,6 @@ Route::get('/resume/add', [
     IndexController::class, 'add'
 ]);
 
-Route::post('/resume/addPerson', [
-    IndexController::class, 'addPerson'
-])->name('addPerson');
+Route::post('/resume/add', [
+    IndexController::class, 'resumeStore'
+])->name('resumeStore');

@@ -30,23 +30,23 @@ class IndexController extends Controller
     return view('add-content');
   }
 
-  public function addPerson(Request $request)
+  public function resumeStore(Request $request)
   {
     $this->validate($request, [
-    'fullName'=>'required|max:255',
-    'phoneNumber' => 'required',
-    'stage' => 'required',
-    'staff' => 'required',
+      'FIO' => 'required|max:255',
+      'Phone' => 'required|numeric',
+      'Stage' => 'required|numeric',
+      'Staff' => 'required|numeric',
+      'Image' => 'required'
     ]);
 
     $data = $request->all();
-    $person = new Person();
-    $person->fill($data);
-    $person->save();
+    $resume = new Person();
+    $resume->fill($data);
+    $resume->save();
 
+    // dd($resume);
 
-    var_dump($person);
-
-    return redirect()->route('show', ['id' => $person->id]);
+    // return redirect()->route('show', ['id' => $resume->id]);
   }
 }
