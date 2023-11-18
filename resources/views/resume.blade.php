@@ -4,26 +4,25 @@
     @parent
     <li><a href="./">Главная страница</a></li>
     <li><a href="">Резюме по профессиям</a></li>
-    <li><a href="./add">Добавить резюме</a></li>
 @stop
 
 @section('content')
     @parent
     <div class="pinline1">
-        <img class="pic" src="{{ asset('images/' . $data['avatar']) }}">
+        <img class="pic" src="{{ asset('images/' . $data['Image']) }}">
     </div>
 
     <p class="pinline second">
-        {{ $data['lastName'] }}
+        {{ $data['FIO'] }}
 
         <br>
-        Телефон: {{ $data['phoneNumber'] }}
+        Телефон: {{ $data['Phone'] }}
     </p>
 
     <p class="pinline third">
-        {{ $data['position'] }}
+        {{ $data['Staff']}}
         <br>
 
-        Стаж: {{ $data['experience'] }}
+        Стаж: {{ $data['Stage'] }}
     </p>
 @stop

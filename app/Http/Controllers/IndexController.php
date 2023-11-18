@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Person;
+use App\Models\Staff;
 
 class IndexController extends Controller
 {
@@ -17,17 +18,19 @@ class IndexController extends Controller
   public function show()
   {
     return view('resume', ['data' => [
-      'lastName' => 'Иванов',
-      'position' => 'Программист',
-      'phoneNumber' => '55-55-55',
-      'experience' => '4 года',
-      'avatar' => 'ava1.jpg'
+      'FIO' => 'Иванов',
+      'Staff' => 'Программист',
+      'Phone' => '55-55-55',
+      'Stage' => '4',
+      'Image' => 'ava1.jpg'
     ]]);
   }
 
   public function add()
   {
-    return view('add-content');
+    $staffs = Staff::all();
+
+    return view('add-content', ['staffs'=> $staffs]);
   }
 
   public function resumeStore(Request $request)

@@ -17,6 +17,7 @@
       <div class="rightcol"><!--*******************Навигационное меню*******************-->
           <ul class="menu">
               @yield('sidebar')
+              <li><a href="./add">Добавить резюме</a></li>
           </ul>
       </div>
 
