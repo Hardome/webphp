@@ -25,3 +25,11 @@ Route::get('/resume', [
 Route::get('/resume/show', [
     IndexController::class, 'show'
 ]);
+
+Route::get('/resume/add', [
+    IndexController::class, 'add'
+]);
+
+Route::post('/resume/addPerson', [
+    IndexController::class, 'addPerson'
+])->name('addPerson');
