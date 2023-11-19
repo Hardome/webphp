@@ -2,27 +2,26 @@
 
 @section('sidebar')
     @parent
-    <li><a href="./">Главная страница</a></li>
     <li><a href="">Резюме по профессиям</a></li>
 @stop
 
 @section('content')
     @parent
     <div class="pinline1">
-        <img class="pic" src="{{ asset('images/' . $data['Image']) }}">
+        <img class="pic" src="{{ asset('images/' . $User->Image) }}">
     </div>
 
     <p class="pinline second">
-        {{ $data['FIO'] }}
+        {{ $User->FIO }}
 
         <br>
-        Телефон: {{ $data['Phone'] }}
+        Телефон: {{ $User->Phone }}
     </p>
 
     <p class="pinline third">
-        {{ $data['Staff']}}
+        {{ $User->Staff}}
         <br>
 
-        Стаж: {{ $data['Stage'] }}
+        Стаж: {{ $User->Stage }}
     </p>
 @stop

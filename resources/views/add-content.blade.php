@@ -9,7 +9,7 @@
 @section('content')
     @parent
 
-    <form method="post" action="{{ route('resumeStore') }}" class="formContent">
+    <form method="post" action="{{ route('storeResume') }}" class="formContent">
         @csrf
         <p>ФИО <input name="FIO" type="text" value="{{old('FIO')}}">
         <p>Телефон <input name="Phone" value="{{old('Phone')}}">

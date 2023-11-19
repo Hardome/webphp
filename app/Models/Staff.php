@@ -11,4 +11,9 @@ class Staff extends Model
 
     protected $table = 'Staff';
     protected $guarded = ['id'];
+
+    public function person()
+    {
+        return $this->hasMany(Person::class);
+    }
 }

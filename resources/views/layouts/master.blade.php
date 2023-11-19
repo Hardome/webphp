@@ -1,8 +1,11 @@
+{{-- @extends('layouts.app') --}}
+
 <html>
 
   <head>
       <link rel=stylesheet href='{{ asset('style.css') }}' type='text/css'>
       <title>Резюме и вакансии</title>
+      @vite(['resources/sass/app.scss', 'resources/js/app.js'])
   </head>
 
   <body>
@@ -17,7 +20,8 @@
       <div class="rightcol"><!--*******************Навигационное меню*******************-->
           <ul class="menu">
               @yield('sidebar')
-              <li><a href="./add">Добавить резюме</a></li>
+              <li><a href="{{ route('index') }}">Главная страница</a></li>
+              <li><a href="{{ route('add') }}">Добавить резюме</a></li>
           </ul>
       </div>
 

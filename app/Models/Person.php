@@ -11,4 +11,9 @@ class Person extends Model
 
     protected $table = 'Person';
     protected $guarded = ['id'];
+
+    public function Staff()
+    {
+        return $this->belongsTo(Staff::class);
+    }
 }

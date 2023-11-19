@@ -15,16 +15,24 @@ use App\Http\Controllers\IndexController;
 */
 Route::get('/resume', [
     IndexController::class, 'index'
-]);
+])->name('index');
 
-Route::get('/resume/show', [
-    IndexController::class, 'show'
-]);
+Route::get('/resume/show/{id}', [
+    IndexController::class, 'showResume'
+])->name('show');
 
 Route::get('/resume/add', [
-    IndexController::class, 'add'
-]);
+    IndexController::class, 'addResume'
+])->name('add');
 
 Route::post('/resume/add', [
-    IndexController::class, 'resumeStore'
-])->name('resumeStore');
+    IndexController::class, 'storeResume'
+])->name('storeResume');
+
+Route::delete('/resume/delete/{resume}', [
+    IndexController::class, 'deleteResume'
+])->name('deleteResume');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

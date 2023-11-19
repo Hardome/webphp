@@ -10,30 +10,27 @@ class IndexController extends Controller
 {
   public function index()
   {
-    $header = 'Резюме и вакансии';
-
-    return view('page', ['header' => $header]);
+    return view('index', [
+        'header' => 'Резюме и вакансии',
+        'Persons'=> Person::paginate(10)
+    ]);
   }
 
-  public function show()
+  public function showResume(Request $request)
   {
-    return view('resume', ['data' => [
-      'FIO' => 'Иванов',
-      'Staff' => 'Программист',
-      'Phone' => '55-55-55',
-      'Stage' => '4',
-      'Image' => 'ava1.jpg'
-    ]]);
+    return view('resume', [
+        'User' => Person::findOrFail($request->id)
+    ]);
   }
 
-  public function add()
+  public function addResume()
   {
     $staffs = Staff::all();
 
     return view('add-content', ['staffs'=> $staffs]);
   }
 
-  public function resumeStore(Request $request)
+  public function storeResume(Request $request)
   {
     $this->validate($request, [
       'FIO' => 'required|max:255',
@@ -48,8 +45,15 @@ class IndexController extends Controller
     $resume->fill($data);
     $resume->save();
 
-    // dd($resume);
+    return redirect()->route('show', ['id' => $resume->id]);
+  }
 
-    // return redirect()->route('show', ['id' => $resume->id]);
+  public function deleteResume($id)
+  {
+    $person = Person::findOrFail($id);
+
+    $person->delete();
+
+    return redirect('/resume');
   }
 }
