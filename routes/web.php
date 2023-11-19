@@ -32,7 +32,3 @@ Route::post('/resume/add', [
 Route::delete('/resume/delete/{resume}', [
     IndexController::class, 'deleteResume'
 ])->name('deleteResume');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
