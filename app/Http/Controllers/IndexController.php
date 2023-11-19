@@ -56,4 +56,32 @@ class IndexController extends Controller
 
     return redirect('/resume');
   }
+
+  public function editResume($id)
+  {
+    $person = Person::findOrFail($id);
+    $staffs = Staff::all();
+
+    return view('editResume', [
+        'staffs'=> $staffs,
+        'person'=> $person
+    ]);
+  }
+
+  public function updateResume(Request $request, $id)
+  {
+    $person = Person::findOrFail($id);
+
+    $this->validate($request, [
+        'FIO' => 'required|max:255',
+        'Phone' => 'required|numeric',
+        'Stage' => 'required|numeric',
+        'Staff' => 'required|numeric',
+        'Image' => 'required'
+      ]);
+
+    $person->update($request->all());
+
+    return redirect()->route('show', ['id' => $id]);
+  }
 }

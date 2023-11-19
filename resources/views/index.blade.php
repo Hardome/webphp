@@ -12,10 +12,12 @@
     @parent
 
     @foreach ($Persons as $person)
-        <p class="pinline second resumeItem">
+      <a href="{{route('editResume', $person->id)}}">
+        <p class="pinline second resumeItem" style="color: black">
             {{ $person->FIO }}, Телефон: {{ $person->Phone }}
             <span class="pinline third"> Стаж: {{ $person->Stage }} лет</span>
         </p>
+      </a>
         <form action="{{ route('deleteResume', $person->id) }}" method="POST">
             @csrf
             @method('DELETE')

@@ -29,6 +29,14 @@ Route::post('/resume/add', [
     IndexController::class, 'storeResume'
 ])->name('storeResume');
 
+Route::get('/resume/edit/{id}', [
+    IndexController::class, 'editResume'
+])->name('editResume');
+
+Route::put('/resume/edit/{id}', [
+    IndexController::class, 'updateResume'
+])->name('updateResume');
+
 Route::delete('/resume/delete/{resume}', [
     IndexController::class, 'deleteResume'
 ])->name('deleteResume');
