@@ -21,6 +21,8 @@
           <ul class="menu">
               <li><a href="{{ route('index') }}">Главная страница</a></li>
               <li><a href="{{ route('add') }}">Добавить резюме</a></li>
+              {{-- <li><a href="{{ route('staffList') }}">Список профессий</a></li> --}}
+              <li><a href="{{ route('firstQuery') }}">Лаб 4-6</a></li>
               @yield('sidebar')
           </ul>
       </div>

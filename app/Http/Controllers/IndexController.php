@@ -72,8 +72,6 @@ class IndexController extends Controller
   {
     $person = Person::findOrFail($id);
 
-    // dd($request);
-
     $request->validate([
         'FIO' => 'required|max:255',
         'Phone' => 'required|numeric',
@@ -85,8 +83,6 @@ class IndexController extends Controller
     if($request['Image'] === null) {
         unset($request['Image']);
     }
-
-    // dd($request);
 
     $person->update($request->all());
 

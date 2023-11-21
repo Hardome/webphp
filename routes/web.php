@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\lab4Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +41,9 @@ Route::put('/resume/edit/{id}', [
 Route::delete('/resume/delete/{resume}', [
     IndexController::class, 'deleteResume'
 ])->name('deleteResume');
+
+//lab 4/6
+
+Route::get('/resume/lab4/firstQuery', [
+    lab4Controller::class, 'firstQuery'
+])->name('firstQuery');
