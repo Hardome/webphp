@@ -32,7 +32,7 @@ class IndexController extends Controller
 
   public function storeResume(Request $request)
   {
-    $this->validate($request, [
+    $request->validate([
       'FIO' => 'required|max:255',
       'Phone' => 'required|numeric',
       'Stage' => 'required|numeric',
@@ -72,13 +72,21 @@ class IndexController extends Controller
   {
     $person = Person::findOrFail($id);
 
-    $this->validate($request, [
+    // dd($request);
+
+    $request->validate([
         'FIO' => 'required|max:255',
         'Phone' => 'required|numeric',
         'Stage' => 'required|numeric',
         'Staff' => 'required|numeric',
-        'Image' => 'required'
-      ]);
+        'Image' => 'nullable|file|string'
+    ]);
+
+    if($request['Image'] === null) {
+        unset($request['Image']);
+    }
+
+    // dd($request);
 
     $person->update($request->all());
 

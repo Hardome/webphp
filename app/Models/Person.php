@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Person extends Model
 {
@@ -12,8 +13,8 @@ class Person extends Model
     protected $table = 'Person';
     protected $guarded = ['id'];
 
-    public function Staff()
+    public function staff(): HasOne
     {
-        return $this->belongsTo(Staff::class);
+        return $this->hasOne(Staff::class, 'id', 'Staff');
     }
 }

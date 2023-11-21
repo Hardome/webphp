@@ -2,7 +2,6 @@
 
 @section('sidebar')
     @parent
-    <li><a href="./">Главная страница</a></li>
     <li><a href="">Резюме по профессиям</a></li>
 @stop
 

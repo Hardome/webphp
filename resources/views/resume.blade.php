@@ -19,7 +19,7 @@
     </p>
 
     <p class="pinline third">
-        {{ $User->Staff}}
+        {{ $User->staff->staff}}
         <br>
 
         Стаж: {{ $User->Stage }}

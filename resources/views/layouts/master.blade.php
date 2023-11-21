@@ -19,9 +19,9 @@
 
       <div class="rightcol"><!--*******************Навигационное меню*******************-->
           <ul class="menu">
-              @yield('sidebar')
               <li><a href="{{ route('index') }}">Главная страница</a></li>
               <li><a href="{{ route('add') }}">Добавить резюме</a></li>
+              @yield('sidebar')
           </ul>
       </div>
 

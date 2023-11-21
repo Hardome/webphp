@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Staff extends Model
 {
@@ -12,8 +13,8 @@ class Staff extends Model
     protected $table = 'Staff';
     protected $guarded = ['id'];
 
-    public function person()
+    public function Person():BelongsToMany
     {
-        return $this->hasMany(Person::class);
+        return $this->belongsToMany(Person::class);
     }
 }
