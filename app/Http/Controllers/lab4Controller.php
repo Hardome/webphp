@@ -20,4 +20,25 @@ class lab4Controller extends Controller
         'Persons' => Person::whereBetween('Stage', [5, 15])->get()
     ]);
   }
+
+  public function secondQuery()
+  {
+    return view('lab4.second', [
+        'Persons' => Person::join('Staff', 'person.Staff', '=', 'staff.id')
+        ->where('Staff.staff', 'Программист')
+        ->get()
+    ]);
+
+    // return view('lab4.second', [
+    //     'Persons' => Person::where('Staff', 1)
+    //     ->get()
+    // ]);
+  }
+
+  public function thirdQuery()
+  {
+    return view('lab4.third', [
+        'count' => Person::all()->count()
+    ]);
+  }
 }

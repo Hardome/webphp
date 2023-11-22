@@ -47,3 +47,12 @@ Route::delete('/resume/delete/{resume}', [
 Route::get('/resume/lab4/firstQuery', [
     lab4Controller::class, 'firstQuery'
 ])->name('firstQuery');
+
+Route::get('/resume/lab4/secondQuery', [
+    lab4Controller::class, 'secondQuery'
+])->name('secondQuery');
+
+Route::get('/resume/lab4/thirdQuery', [
+    lab4Controller::class, 'thirdQuery'
+])->name('thirdQuery');
+

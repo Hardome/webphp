@@ -3,7 +3,7 @@
 @section('sidebar')
     @parent
 
-    <li><a href="{{ route('secondQuery')}}">Второй запрос</a></li>
+    <li><a href="{{route('firstQuery')}}">Первый запрос</a></li>
     <li><a href="{{ route('thirdQuery')}}">Третий запрос</a></li>
     <li><a href="">Четвертый запрос</a></li>
 @stop
@@ -24,7 +24,7 @@
           <td>&nbsp;</td>
           <td>{{ $person->id }}</td>
           <td>{{ $person->FIO }}</td>
-          <td>{{ $person->Stage }}</td>
+          <td>{{ $person->staff->staff }}</td>
         </tr>
 
       @endforeach
