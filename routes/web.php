@@ -56,3 +56,7 @@ Route::get('/resume/lab4/thirdQuery', [
     lab4Controller::class, 'thirdQuery'
 ])->name('thirdQuery');
 
+Route::get('/resume/lab4/fourthQuery', [
+    lab4Controller::class, 'fourthQuery'
+])->name('fourthQuery');
+

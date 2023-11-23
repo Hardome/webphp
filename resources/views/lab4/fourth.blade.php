@@ -3,9 +3,9 @@
 @section('sidebar')
     @parent
 
+    <li><a href="{{ route('firstQuery')}}">Первый запрос</a></li>
     <li><a href="{{ route('secondQuery')}}">Второй запрос</a></li>
     <li><a href="{{ route('thirdQuery')}}">Третий запрос</a></li>
-    <li><a href="{{ route('fourthQuery')}}">Четвертый запрос</a></li>
 @stop
 
 @section('content')
@@ -15,16 +15,14 @@
       <tr style="border-bottom: 1px solid black">
         <td>&nbsp;</td>
         <td>Id</td>
-        <td>ФИО</td>
-        <td>Стаж</td>
+        <td>Должность</td>
       </tr>
-      @foreach ($Persons as $person)
+      @foreach ($Staffs as $staff)
 
         <tr>
           <td>&nbsp;</td>
-          <td>{{ $person->id }}</td>
-          <td>{{ $person->FIO }}</td>
-          <td>{{ $person->Stage }}</td>
+          <td>{{ $staff->id }}</td>
+          <td>{{ $staff->staff }}</td>
         </tr>
 
       @endforeach

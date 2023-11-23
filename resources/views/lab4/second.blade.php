@@ -5,7 +5,7 @@
 
     <li><a href="{{route('firstQuery')}}">Первый запрос</a></li>
     <li><a href="{{ route('thirdQuery')}}">Третий запрос</a></li>
-    <li><a href="">Четвертый запрос</a></li>
+    <li><a href="{{ route('fourthQuery')}}">Четвертый запрос</a></li>
 @stop
 
 @section('content')
@@ -17,6 +17,7 @@
         <td>Id</td>
         <td>ФИО</td>
         <td>Стаж</td>
+        <td>Профессия</td>
       </tr>
       @foreach ($Persons as $person)
 
@@ -24,7 +25,8 @@
           <td>&nbsp;</td>
           <td>{{ $person->id }}</td>
           <td>{{ $person->FIO }}</td>
-          <td>{{ $person->staff->staff }}</td>
+          <td>{{ $person->Stage}}</td>
+          <td>{{ $person->staff/*->staff*/ }}</td>
         </tr>
 
       @endforeach

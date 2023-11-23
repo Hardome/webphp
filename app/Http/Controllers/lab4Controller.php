@@ -41,4 +41,11 @@ class lab4Controller extends Controller
         'count' => Person::all()->count()
     ]);
   }
+
+  public function fourthQuery()
+  {
+    return view('lab4.fourth', [
+        'Staffs' => Staff::whereHas('Person')->get()
+    ]);
+  }
 }
