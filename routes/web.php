@@ -21,7 +21,9 @@ use App\Http\Controllers\IndexController;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [
+    App\Http\Controllers\HomeController::class, 'index'
+])->name('home');
 
 Route::get('/', [
     IndexController::class, 'index'
@@ -29,7 +31,12 @@ Route::get('/', [
 
 Route::get('/add', [
     IndexController::class, 'add'
-]);
+])->name('add');
+
+Route::post('/add', [
+    IndexController::class, 'storeNews'
+])->name('storeNews');
+
 
 Route::get('/rubric/{id}', [
     IndexController::class, 'rubric'
@@ -38,3 +45,7 @@ Route::get('/rubric/{id}', [
 Route::get('/statya/{id}', [
     IndexController::class, 'statya'
 ])->name('statya');
+
+Route::delete('/statya/{id}', [
+    IndexController::class, 'deleteNews'
+])->name('deleteNews');

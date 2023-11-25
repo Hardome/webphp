@@ -18,7 +18,9 @@ class IndexController extends Controller
 
     public function add()
     {
-        return view('add');
+        return view('add', [
+            'rubrics' => Rubrics::all()
+        ]);
     }
 
     public function rubric($id)
@@ -33,10 +35,35 @@ class IndexController extends Controller
 
     public function statya($id)
     {
-        //statya = News::findOrFail($id);
-
         return view('statya', [
             'statya' => News::findOrFail($id)
         ]);
+    }
+
+    public function storeNews(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|max:255',
+            'lid' => 'required',
+            'rubricsId' => 'required|numeric',
+            'content' => 'required',
+            'image' => 'required'
+        ]);
+
+        $data = $request->all();
+        $statya = new News();
+        $statya->fill($data);
+        $statya->save();
+
+        return redirect()->route('statya', ['id' => $statya->id]);
+    }
+
+    public function deleteNews($id)
+    {
+        $statya = News::findOrFail($id);
+
+        $statya->delete();
+
+        return redirect()->route('rubric', ['id' => $statya->rubricsId]);
     }
 }
