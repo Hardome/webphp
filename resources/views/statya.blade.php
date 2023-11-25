@@ -7,7 +7,7 @@
             <div class="twelve columns">
                 <h1>{{ $statya->title }}</h1>
                 <p class="excerpt">
-                    {{ $statya->lib }}
+                    {{ $statya->lid }}
                 </p>
             </div>
         </article>
@@ -23,7 +23,7 @@
 
     <section class="section_light">
         <div class="row">
-            <p> <img src="../images/{{ $statya->image }}" alt="desc" width=400 align=left hspace=30>
+            <p> <img src="../storage/{{ $statya->image }}" alt="desc" width=400 align=left hspace=30>
                 {{ $statya->content }}
             </p>
         </div>

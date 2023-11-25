@@ -89,27 +89,27 @@
             <h2></h2>
 
             <div class="two columns">
-                <img src="{{ asset('images/thumb1.jpg') }}" alt="desc" />
+                <img src="{{ asset('storage/photos/thumb1.jpg') }}" alt="desc" />
             </div>
 
             <div class="two columns">
-                <img src="{{ asset('images/thumb2.jpg') }}" alt="desc" />
+                <img src="{{ asset('storage/photos/thumb2.jpg') }}" alt="desc" />
             </div>
 
             <div class="two columns">
-                <img src="{{ asset('images/thumb3.jpg') }}" alt="desc" />
+                <img src="{{ asset('storage/photos/thumb3.jpg') }}" alt="desc" />
             </div>
 
             <div class="two columns">
-                <img src="{{ asset('images/thumb4.jpg') }}" alt="desc" />
+                <img src="{{ asset('storage/photos/thumb4.jpg') }}" alt="desc" />
             </div>
 
             <div class="two columns">
-                <img src="{{ asset('images/thumb5.jpg') }}" alt="desc" />
+                <img src="{{ asset('storage/photos/thumb5.jpg') }}" alt="desc" />
             </div>
 
             <div class="two columns">
-                <img src="{{ asset('images/thumb6.jpg') }}" alt="desc" />
+                <img src="{{ asset('storage/photos/thumb6.jpg') }}" alt="desc" />
             </div>
 
 

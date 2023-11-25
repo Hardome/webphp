@@ -12,7 +12,7 @@
     <section>
         <div class="row">
             <section class="eight columns">
-                <form method="post" action="{{ route('storeNews') }}" class="formContent">
+                <form method="post" action="{{ route('storeNews') }}" class="formContent" enctype="multipart/form-data">
                     @csrf
                     <p>Заголовок <input name="title" type="text" value="{{old('title')}}">
                     <p>Lid <input name="lid" type="text" value="{{old('lid')}}">

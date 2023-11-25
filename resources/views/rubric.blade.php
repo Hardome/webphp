@@ -28,7 +28,7 @@
                         <article class="blog_post">
 
                             <div class="three columns">
-                                <a href="{{ route('rubric', ['id' => $statya->rubricsId]) }}" class="th"><img src="../images/{{ $statya->image }}" alt="desc" /></a>
+                                <a href="{{ route('rubric', ['id' => $statya->rubricsId]) }}" class="th"><img src="../storage/{{ $statya->image }}" alt="desc" /></a>
                             </div>
                             <div class="nine columns">
                                 <a href="{{ route('statya', ['id' => $statya->id]) }}"><h4>{{ $statya->title }}</h4></a>

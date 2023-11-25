@@ -15,6 +15,6 @@ class Rubrics extends Model
 
     public function news():HasMany
     {
-        return $this->hasMany(News::class, 'rubricsId', 'id');
+        return $this->hasMany(News::class, 'rubricsId', 'id')->orderBy('created_at', 'desc');
     }
 }

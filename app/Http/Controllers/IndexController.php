@@ -13,7 +13,7 @@ class IndexController extends Controller
     public function index()
     {
         return view('index', [
-            'news' => News::paginate(5),
+            'news' => News::orderBy('created_at', 'desc')->paginate(5),
             'role' => Auth::user()->role ?? 0
         ]);
     }
@@ -57,7 +57,13 @@ class IndexController extends Controller
             'image' => 'required'
         ]);
 
+        if ($request->hasFile('image')) {
+            $photo = $request->file('image');
+            $path = $photo->store('photos', 'public');
+        }
+
         $data = $request->all();
+        $data['image'] = $path;
         $statya = new News();
         $statya->fill($data);
         $statya->save();
