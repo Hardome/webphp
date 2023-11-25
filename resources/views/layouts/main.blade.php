@@ -44,12 +44,12 @@
             <ul id="menu-header" class="nav-bar horizontal">
 
                 <li><a href="{{ route('index') }}">Главная</a></li>
-                <li><a href="">Искусственный интеллект</a></li>
-                <li><a href="">Искусственная нейронная сеть</a></li>
-                <li><a href="">Распознавание образов</a></li>
-                <li><a href="">Робототехника</a></li>
-                <li><a href="">Информационное общество</a></li>
-                <li><a href="">Автоматическая обработка текста</a></li>
+                <li><a href="{{ route('rubric', ['id' => 1]) }}">Искусственный интеллект</a></li>
+                <li><a href="{{ route('rubric', ['id' => 2]) }}">Искусственная нейронная сеть</a></li>
+                <li><a href="{{ route('rubric', ['id' => 3]) }}">Распознавание образов</a></li>
+                <li><a href="{{ route('rubric', ['id' => 4]) }}">Робототехника</a></li>
+                <li><a href="{{ route('rubric', ['id' => 5]) }}">Информационное общество</a></li>
+                <li><a href="{{ route('rubric', ['id' => 6]) }}">Автоматическая обработка текста</a></li>
 
                 @yield('sidebar')
             </ul>
@@ -89,27 +89,27 @@
             <h2></h2>
 
             <div class="two columns">
-                <img src="images/thumb1.jpg" alt="desc" />
+                <img src="{{ asset('images/thumb1.jpg') }}" alt="desc" />
             </div>
 
             <div class="two columns">
-                <img src="images/thumb2.jpg" alt="desc" />
+                <img src="{{ asset('images/thumb2.jpg') }}" alt="desc" />
             </div>
 
             <div class="two columns">
-                <img src="images/thumb3.jpg" alt="desc" />
+                <img src="{{ asset('images/thumb3.jpg') }}" alt="desc" />
             </div>
 
             <div class="two columns">
-                <img src="images/thumb4.jpg" alt="desc" />
+                <img src="{{ asset('images/thumb4.jpg') }}" alt="desc" />
             </div>
 
             <div class="two columns">
-                <img src="images/thumb5.jpg" alt="desc" />
+                <img src="{{ asset('images/thumb5.jpg') }}" alt="desc" />
             </div>
 
             <div class="two columns">
-                <img src="images/thumb6.jpg" alt="desc" />
+                <img src="{{ asset('images/thumb6.jpg') }}" alt="desc" />
             </div>
 
 

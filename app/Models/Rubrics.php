@@ -13,8 +13,8 @@ class Rubrics extends Model
     protected $table = 'rubrics';
     protected $guarded = ['id'];
 
-    public function Person():HasMany
+    public function news():HasMany
     {
-        return $this->hasMany(News::class, 'rubricId', 'id');
+        return $this->hasMany(News::class, 'rubricsId', 'id');
     }
 }

@@ -15,6 +15,6 @@ class News extends Model
 
     public function rubric(): HasOne
     {
-        return $this->hasOne(Rubrics::class, 'id', 'rubricId');
+        return $this->hasOne(Rubrics::class, 'id', 'rubricsId');
     }
 }

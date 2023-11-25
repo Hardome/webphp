@@ -25,3 +25,7 @@ Route::get('/add', [
     IndexController::class, 'add'
 ]);
 
+Route::get('/rubric/{id}', [
+    IndexController::class, 'rubric'
+])->name('rubric');
+

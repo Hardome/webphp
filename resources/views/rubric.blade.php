@@ -22,34 +22,21 @@
 
                 <section class="eight columns">
 
-                    <h3>Искусственный интеллект</h3>
+                    <h3>{{$rubric->name}}</h3>
 
-                    <article class="blog_post">
+                    @foreach ($news as $statya)
+                        <article class="blog_post">
 
-                        <div class="three columns">
-                            <a href="#" class="th"><img src="images/a1.jpg" alt="desc" /></a>
-                        </div>
-                        <div class="nine columns">
-                            <a href="#"><h4>Название 1</h4></a>
-                            <p> Первое предложение новости 1.</p>
-                            <div > <a href="" >Удалить</a></div>
-                        </div>
-
-                    </article>
-
-                    <article class="blog_post">
-
-                        <div class="three columns">
-                            <a href="#" class="th"><img src="images/thumb2.jpg" alt="desc" /></a>
-                        </div>
-                        <div class="nine columns">
-                            <a href="#"><h4>Название 2</h4></a>
-                            <p> Первое предложение новости 2.</p>
-                            <div > <a href="" >Удалить</a></div>
-                        </div>
-
-                    </article>
-
+                            <div class="three columns">
+                                <a href="{{ route('rubric', ['id' => $statya->rubricsId]) }}" class="th"><img src="../images/{{ $statya->image }}" alt="desc" /></a>
+                            </div>
+                            <div class="nine columns">
+                                <a href="#"><h4>{{ $statya->title }}</h4></a>
+                                <p> {{ explode('.', $statya->content)[1] }}.</p>
+                                <div > <a href="" >Удалить</a></div>
+                            </div>
+                        </article>
+                    @endforeach
                 </section>
 
 

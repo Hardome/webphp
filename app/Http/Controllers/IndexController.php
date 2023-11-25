@@ -20,4 +20,14 @@ class IndexController extends Controller
     {
         return view('add');
     }
+
+    public function rubric($id)
+    {
+        $rubric = Rubrics::findOrFail($id);
+
+        return view('rubric', [
+            'rubric' => $rubric,
+            'news' => $rubric->news
+        ]);
+    }
 }

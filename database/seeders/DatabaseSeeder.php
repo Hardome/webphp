@@ -14,10 +14,22 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        DB::table('users')->insert([
+             [
+                 'name' => 'admin',
+                 'email' => 'admin@example.com',
+                 'role' => 1,
+                 'created_at' => now(),
+                 'password' => 'admin'
+             ],
+            [
+                'name' => 'user',
+                'email' => 'user@example.com',
+                'role' => 0,
+                'created_at' => now(),
+                'password' => 'user'
+            ]
+         ]);
 
         DB::table('rubrics')->insert([
             [

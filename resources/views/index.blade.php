@@ -21,11 +21,11 @@
                         <article class="blog_post">
 
                             <div class="three columns">
-                                <a href="#" class="th"><img src="images/{{ $statya->image }}" alt="desc" /></a>
+                                <a href="{{ route('rubric', ['id' => $statya->rubricsId]) }}" class="th"><img src="images/{{ $statya->image }}" alt="desc" /></a>
                             </div>
                             <div class="nine columns">
                                 <a href="#"><h4>{{ $statya->title }}</h4></a>
-                                <p> Первое предложение новости 1.</p>
+                                <p> {{ explode('.', $statya->content)[1] }}.</p>
                             </div>
                         </article>
                     @endforeach
