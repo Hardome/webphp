@@ -15,12 +15,12 @@
                 <form method="post" action="{{ route('storeNews') }}" class="formContent">
                     @csrf
                     <p>Заголовок <input name="title" type="text" value="{{old('title')}}">
-                    <p>Lid <input name="lid" value="{{old('lid')}}">
+                    <p>Lid <input name="lid" type="text" value="{{old('lid')}}">
                     <p>Фото <input name="image" type="file" value="{{old('image')}}">
 
                     <p>Рубрика <select name="rubricsId">
                             @foreach ($rubrics as $rubric)
-                                @if (old('Staff') == $rubric->id)
+                                @if (old('rubricsId') == $rubric->id)
                                     <option value="{{$rubric->id}}" selected>{{$rubric->name}}</option>
                                 @else
                                     <option value="{{$rubric->id}}">{{$rubric->name}}</option>
@@ -28,7 +28,7 @@
                             @endforeach
                         </select>
 
-                    <p>Текст статьи <input name="content" type="string" value="{{old('content')}}"/>
+                    <p>Текст статьи <textarea name="content" type="text" value="{{old('content')}}" rows="4" cols="50"></textarea>
                     <p><input type="submit" value="Добавить статью" />
                 </form>
             </section>

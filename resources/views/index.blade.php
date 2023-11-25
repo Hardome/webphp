@@ -20,26 +20,28 @@
                             </div>
                             <div class="nine columns">
                                 <a href="{{ route('statya', ['id' => $statya->id]) }}"><h4>{{ $statya->title }}</h4></a>
-                                <p> {{ explode('.', $statya->content)[1] }}.</p>
+                                <p> {{ explode('.', $statya->content)[1] ??  explode('.', $statya->content)[0] }}.</p>
                             </div>
                         </article>
                     @endforeach
                 </section>
 
-                <section class="four columns">
-                    <H3>  &nbsp; </H3>
-                    <div class="panel">
-                        <h3>Админ-панель</h3>
-                        <ul class="accordion">
-                            <li class="active">
-                                <div class="title">
-                                    <a href="{{ route('add') }}"><h5>Добавить статью</h5></a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </section>
-            </div>
+                @if($role === 1)
+                    <section class="four columns">
+                        <H3>  &nbsp; </H3>
+                        <div class="panel">
+                            <h3>Админ-панель</h3>
+                            <ul class="accordion">
+                                <li class="active">
+                                    <div class="title">
+                                        <a href="{{ route('add') }}"><h5>Добавить статью</h5></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+              @endif
     </section>
 @endsection
 

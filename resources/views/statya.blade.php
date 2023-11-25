@@ -2,7 +2,7 @@
 
 @section('header')
     <div class="row">
-        <h4>{{ $statya->rubric->name }}</h4>
+        <a href="{{ route('rubric', ['id' => $statya->rubric->id]) }}"><h4>{{ $statya->rubric->name }}</h4></a>
         <article>
             <div class="twelve columns">
                 <h1>{{ $statya->title }}</h1>

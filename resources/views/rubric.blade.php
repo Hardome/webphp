@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('header')
-    <h1>Новости науки</h1>
+    <a href="{{ route('index') }}"><h1>Новости науки</h1></a>
 @endsection
 
 @section('sidebar')
@@ -34,31 +34,34 @@
                                 <a href="{{ route('statya', ['id' => $statya->id]) }}"><h4>{{ $statya->title }}</h4></a>
                                 <p> {{ explode('.', $statya->content)[1] ??  explode('.', $statya->content)[0]}}.</p>
 
-                                <form id="delete-form" action="{{ route('deleteNews', ['id' => $statya->id]) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit">Удалить</button>
-                                </form>
-
+                                @if($role === 1)
+                                    <form id="delete-form" action="{{ route('deleteNews', ['id' => $statya->id]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit">Удалить</button>
+                                    </form>
+                                @endif
                             </div>
                         </article>
                     @endforeach
                 </section>
 
 
-                <section class="four columns">
-                    <H3>  &nbsp; </H3>
-                    <div class="panel">
-                        <h3>Админ-панель</h3>
-                        <ul class="accordion">
-                            <li class="active">
-                                <div class="title">
-                                    <a href="{{ route('add') }}"><h5>Добавить статью</h5></a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </section>
+                @if($role === 1)
+                    <section class="four columns">
+                        <H3>  &nbsp; </H3>
+                        <div class="panel">
+                            <h3>Админ-панель</h3>
+                            <ul class="accordion">
+                                <li class="active">
+                                    <div class="title">
+                                        <a href="{{ route('add') }}"><h5>Добавить статью</h5></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                @endif
             </div>
         </div>
     </section>

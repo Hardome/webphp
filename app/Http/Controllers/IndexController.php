@@ -6,13 +6,15 @@ use Illuminate\Http\Request;
 use App\Models\News;
 use App\Models\Rubrics;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
     public function index()
     {
         return view('index', [
-            'news' => News::paginate(5)
+            'news' => News::paginate(5),
+            'role' => Auth::user()->role ?? 0
         ]);
     }
 
@@ -29,7 +31,8 @@ class IndexController extends Controller
 
         return view('rubric', [
             'rubric' => $rubric,
-            'news' => $rubric->news
+            'news' => $rubric->news,
+            'role' => Auth::user()->role ?? 0
         ]);
     }
 
@@ -42,6 +45,10 @@ class IndexController extends Controller
 
     public function storeNews(Request $request)
     {
+        if (Auth::user()->role === 0) {
+            redirect()->route('index');
+        }
+
         $request->validate([
             'title' => 'required|max:255',
             'lid' => 'required',
@@ -61,6 +68,10 @@ class IndexController extends Controller
     public function deleteNews($id)
     {
         $statya = News::findOrFail($id);
+
+        if (Auth::user()->role === 0) {
+            return redirect()->route('rubric', ['id' => $statya->rubricsId]);
+        }
 
         $statya->delete();
 
