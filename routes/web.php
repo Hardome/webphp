@@ -29,3 +29,7 @@ Route::get('/rubric/{id}', [
     IndexController::class, 'rubric'
 ])->name('rubric');
 
+Route::get('/statya/{id}', [
+    IndexController::class, 'statya'
+])->name('statya');
+

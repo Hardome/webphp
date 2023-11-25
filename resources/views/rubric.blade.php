@@ -31,7 +31,7 @@
                                 <a href="{{ route('rubric', ['id' => $statya->rubricsId]) }}" class="th"><img src="../images/{{ $statya->image }}" alt="desc" /></a>
                             </div>
                             <div class="nine columns">
-                                <a href="#"><h4>{{ $statya->title }}</h4></a>
+                                <a href="{{ route('statya', ['id' => $statya->id]) }}"><h4>{{ $statya->title }}</h4></a>
                                 <p> {{ explode('.', $statya->content)[1] }}.</p>
                                 <div > <a href="" >Удалить</a></div>
                             </div>

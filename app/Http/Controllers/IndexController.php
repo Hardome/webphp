@@ -30,4 +30,13 @@ class IndexController extends Controller
             'news' => $rubric->news
         ]);
     }
+
+    public function statya($id)
+    {
+        //statya = News::findOrFail($id);
+
+        return view('statya', [
+            'statya' => News::findOrFail($id)
+        ]);
+    }
 }
