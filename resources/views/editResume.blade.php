@@ -12,10 +12,10 @@
     @parent
 
     <div class="pinline1">
-        <img class="pic" src="{{ asset('images/' . $person->Image) }}">
+        <img class="pic" src="{{ asset('storage/' . $person->Image) }}">
     </div>
 
-    <form method="post" action="{{ route('updateResume', $person->id) }}" class="formContent">
+    <form method="post" action="{{ route('updateResume', $person->id) }}" class="formContent" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <p>ФИО <input name="FIO" type="text" value="{{ $person->FIO ?? old('FIO') }}">
@@ -25,7 +25,7 @@
         <p>Профессия <select name="Staff">
           @foreach ($staffs as $staff)
             @if ($person->Staff == $staff->id || old('Staff') == $staff->id)
-            <option value="{{$staff->id}}" selected>{{$staff->staff}}</option>
+              <option value="{{$staff->id}}" selected>{{$staff->staff}}</option>
             @else
               <option value="{{$staff->id}}">{{$staff->staff}}</option>
             @endif

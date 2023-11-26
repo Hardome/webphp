@@ -8,7 +8,7 @@
 @section('content')
     @parent
 
-    <form method="post" action="{{ route('storeResume') }}" class="formContent">
+    <form method="post" action="{{ route('storeResume') }}" class="formContent" enctype="multipart/form-data">
         @csrf
         <p>ФИО <input name="FIO" type="text" value="{{old('FIO')}}">
         <p>Телефон <input name="Phone" value="{{old('Phone')}}">
@@ -17,9 +17,9 @@
         <p>Профессия <select name="Staff">
           @foreach ($staffs as $staff)
             @if (old('Staff') == $staff->id)
-            <option value="{{$staff->id}}" selected>{{$staff->staff}}</option>
+                <option value="{{$staff->id}}" selected>{{$staff->staff}}</option>
             @else
-              <option value="{{$staff->id}}">{{$staff->staff}}</option>
+                <option value="{{$staff->id}}">{{$staff->staff}}</option>
             @endif
           @endforeach
         </select>

@@ -34,13 +34,19 @@ class IndexController extends Controller
   {
     $request->validate([
       'FIO' => 'required|max:255',
-      'Phone' => 'required|numeric',
+      'Phone' => 'required|string',
       'Stage' => 'required|numeric',
       'Staff' => 'required|numeric',
       'Image' => 'required'
     ]);
 
+    if ($request->hasFile('Image')) {
+      $photo = $request->file('Image');
+      $path = $photo->store('photos', 'public');
+    }
+
     $data = $request->all();
+    $data['Image'] = $path;
     $resume = new Person();
     $resume->fill($data);
     $resume->save();
@@ -63,8 +69,8 @@ class IndexController extends Controller
     $staffs = Staff::all();
 
     return view('editResume', [
-        'staffs'=> $staffs,
-        'person'=> $person
+      'staffs'=> $staffs,
+      'person'=> $person
     ]);
   }
 
@@ -74,17 +80,25 @@ class IndexController extends Controller
 
     $request->validate([
         'FIO' => 'required|max:255',
-        'Phone' => 'required|numeric',
+        'Phone' => 'required|string',
         'Stage' => 'required|numeric',
-        'Staff' => 'required|numeric',
-        'Image' => 'nullable|file|string'
+        'Staff' => 'required|numeric'
     ]);
 
+      if ($request->hasFile('Image')) {
+          $photo = $request->file('Image');
+          $path = $photo->store('photos', 'public');
+      }
+
+    $data = $request->all();
+
     if($request['Image'] === null) {
-        unset($request['Image']);
+      unset($request['Image']);
+    } else {
+      $data['Image'] = $path;
     }
 
-    $person->update($request->all());
+    $person->update($data);
 
     return redirect()->route('show', ['id' => $id]);
   }

@@ -8,7 +8,7 @@
 @section('content')
     @parent
     <div class="pinline1">
-        <img class="pic" src="{{ asset('images/' . $User->Image) }}">
+        <img class="pic" src="{{ asset('storage/' . $User->Image) }}">
     </div>
 
     <p class="pinline second">
