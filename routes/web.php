@@ -27,11 +27,11 @@ Route::get('/home', [
 
 Route::get('/', [
     IndexController::class, 'index'
-])->name('index');
+])->name('index')->middleware('auth');
 
 Route::get('/add', [
     IndexController::class, 'add'
-])->name('add');
+])->name('add')->middleware('auth');
 
 Route::post('/add', [
     IndexController::class, 'storeNews'
@@ -40,11 +40,11 @@ Route::post('/add', [
 
 Route::get('/rubric/{id}', [
     IndexController::class, 'rubric'
-])->name('rubric');
+])->name('rubric')->middleware('auth');
 
 Route::get('/statya/{id}', [
     IndexController::class, 'statya'
-])->name('statya');
+])->name('statya')->middleware('auth');
 
 Route::delete('/statya/{id}', [
     IndexController::class, 'deleteNews'
