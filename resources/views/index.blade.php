@@ -40,8 +40,8 @@
                             </ul>
                         </div>
                     </section>
-                </div>
-              @endif
+                @endif
+            </div>
     </section>
 @endsection
 
