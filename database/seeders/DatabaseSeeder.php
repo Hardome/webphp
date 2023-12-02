@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
                 'login' => 'bedrin',
                 'isAdmin' => false,
                 'created_at' => now(),
+                'image' => 'photos/a3.jpg',
                 'password' => '$2y$12$imkz9a2rkqzfHIfnFeJjnes.aHKvYV1GOUoY4Z/XPHNAXguXFCOVO' //user
             ],
             [
@@ -35,7 +36,51 @@ class DatabaseSeeder extends Seeder
                 'login' => 'admin',
                 'isAdmin' => true,
                 'created_at' => now(),
+                'image' => 'photos/a1.jpg',
                 'password' => '$2y$12$af/zIyHR.jLYcHbfuFpzf.58KywB7kadDrcVDJoCrsYTv/hgt39fC' //admin
+            ]
+        ]);
+
+
+        DB::table('courses')->insert([
+            [
+                'title' => 'Интенсивный курс английского языка',
+                'description' => 'Цель: комплексное развитие и совершенствование таких видов речевой деятельности, как говорение и аудирование, развитие языковой и коммуникативной компетенции, преодоление языкового барьера и совершенствование навыков общения на английском языке, в том числе с носителем языка.',
+                'limit' => 15,
+                'startAt' => date('2023-10-02 15:30:00.000'),
+                'created_at' => now(),
+                'image' => 'photos/images (1).jpg'
+            ],
+            [
+                'title' => 'Китайский язык для начинающих',
+                'description' => 'Цель: формирование произношения, изучение разговорных, обиходных выражений, овладение основными принципами построения различных моделей предложений, знакомство с основами китайской культуры.',
+                'limit' => 10,
+                'startAt' => date('2023-11-02 18:00:00.000'),
+                'created_at' => now(),
+                'image' => 'photos/images (2).jpg'
+            ],
+            [
+                'title' => 'English for Special Purposes',
+                'description' => 'Цель: развитие всех видов речевой деятельности (чтение, говорение, аудирование, письмо, основы устного и письменного перевода), формирование деловой и коммуникативной компетенции на темах, связанных с современным бизнесом.',
+                'limit' => 12,
+                'startAt' => date('2023-12-02 12:00:00.000'),
+                'created_at' => now(),
+                'image' => 'photos/images (3).jpg'
+            ]
+        ]);
+
+        DB::table('courses_members')->insert([
+            [
+                'courseId' => 1,
+                'userId' => 1
+            ],
+            [
+                'courseId' => 2,
+                'userId' => 1
+            ],
+            [
+                'courseId' => 3,
+                'userId' => 1
             ]
         ]);
     }

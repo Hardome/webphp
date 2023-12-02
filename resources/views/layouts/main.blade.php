@@ -49,6 +49,10 @@
                 <li><a href="{{ route('course', ['id' => 3]) }}">Немецкий</a></li>
                 <li><a href="{{ route('course', ['id' => 4]) }}">Китайский</a></li>
 
+                <li><a href="{{ route('profile') }}"><b>Профиль</b></a></li>
+
+                <li><a href="{{ route('admin') }}"><b>Админка</b></a></li>
+
                 @yield('sidebar')
             </ul>
 

@@ -29,3 +29,39 @@ Route::get('/', [
 Route::get('/course/{id}', [
     IndexController::class, 'course'
 ])->name('course')->middleware('auth');
+
+Route::get('/courseAdd', [
+    IndexController::class, 'courseAdd'
+])->name('courseAdd')->middleware('auth');
+
+Route::post('/courseAdd', [
+    IndexController::class, 'storeCourse'
+])->name('storeCourse')->middleware('auth');
+
+Route::delete('/deleteCourse/{id}', [
+    IndexController::class, 'deleteCourse'
+])->name('deleteCourse')->middleware('auth');
+
+Route::post('/courseRegister/{id}', [
+    IndexController::class, 'courseRegister'
+])->name('courseRegister')->middleware('auth');
+
+Route::post('/courseUnRegister/{id}', [
+    IndexController::class, 'courseUnRegister'
+])->name('courseUnRegister')->middleware('auth');
+
+Route::get('/profile', [
+    IndexController::class, 'profile'
+])->name('profile')->middleware('auth');
+
+Route::delete('/deleteRecord/{id}', [
+    IndexController::class, 'deleteRecord'
+])->name('deleteRecord')->middleware('auth');
+
+Route::get('/admin', [
+    IndexController::class, 'admin'
+])->name('admin')->middleware('auth');
+
+Route::get('/courseRecords/{id}', [
+    IndexController::class, 'courseRecords'
+])->name('courseRecords')->middleware('auth');
