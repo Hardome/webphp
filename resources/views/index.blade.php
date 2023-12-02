@@ -1,35 +1,48 @@
-@extends('layouts.master')
+@extends('layouts.main')
+
+@section('header')
+    <h1>Языковая школа LINGVO</h1>
+@endsection
 
 @section('sidebar')
     @parent
-    <li><a href="">Вакансии</a></li>
-    <li><a href="">Резюме по профессиям</a></li>
-    <li><a href="">Резюме по возрасту</a></li>
-    <li><a href="">Избранное резюме</a></li>
-@stop
+@endsection
 
 @section('content')
-    @parent
+    <section>
+        <div class="row">
+            <section class="eight columns">
+                @foreach ($news as $statya)
+                    <article class="blog_post">
 
-    @foreach ($Persons as $person)
-        <a href="{{ route('show', $person->id) }}">
-            <p class="pinline second resumeItem" style="color: black">
-                {{ $person->FIO }}, Телефон: {{ $person->Phone }}
-                <span class="pinline third"> Стаж: {{ $person->Stage }} лет</span>
-            </p>
-        </a>
-        <div style="display: flex; background-color:white; gap: 5px; padding: 0;">
-            <form action="{{ route('deleteResume', $person->id) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit">Удалить</button>
-            </form>
-            <form action="{{ route('editResume', $person->id) }}" method="get">
-                @csrf
-                @method('PUT')
-                <button type="submit">Изменить</button>
-            </form>
+                        <div class="three columns">
+                            <a href="{{ route('rubric', ['id' => $statya->rubricsId]) }}" class="th"><img src="storage/{{ $statya->image }}" alt="desc" /></a>
+                        </div>
+                        <div class="nine columns">
+                            <a href="{{ route('statya', ['id' => $statya->id]) }}"><h4>{{ $statya->title }}</h4></a>
+                            <p> {{ explode('.', $statya->content)[1] ??  explode('.', $statya->content)[0] }}.</p>
+                        </div>
+                    </article>
+                @endforeach
+            </section>
+
+            @if($role === 1)
+                <section class="four columns">
+                    <H3>  &nbsp; </H3>
+                    <div class="panel">
+                        <h3>Админ-панель</h3>
+                        <ul class="accordion">
+                            <li class="active">
+                                <div class="title">
+                                    <a href="{{ route('add') }}"><h5>Добавить статью</h5></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            @endif
         </div>
-    @endforeach
-    {{ $Persons->links() }}
+    </section>
 @endsection
+
+

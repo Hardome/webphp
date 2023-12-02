@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\lab4Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,49 +15,17 @@ use App\Http\Controllers\lab4Controller;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/resume', [
+
+Auth::routes();
+
+Route::get('/home', [
+    App\Http\Controllers\HomeController::class, 'index'
+])->name('home');
+
+Route::get('/', [
     IndexController::class, 'index'
-])->name('index');
+])->name('index')->middleware('auth');
 
-Route::get('/resume/show/{id}', [
-    IndexController::class, 'showResume'
-])->name('show');
-
-Route::get('/resume/add', [
-    IndexController::class, 'addResume'
-])->name('add');
-
-Route::post('/resume/add', [
-    IndexController::class, 'storeResume'
-])->name('storeResume');
-
-Route::get('/resume/edit/{id}', [
-    IndexController::class, 'editResume'
-])->name('editResume');
-
-Route::put('/resume/edit/{id}', [
-    IndexController::class, 'updateResume'
-])->name('updateResume');
-
-Route::delete('/resume/delete/{resume}', [
-    IndexController::class, 'deleteResume'
-])->name('deleteResume');
-
-//lab 4/6
-
-Route::get('/resume/lab4/firstQuery', [
-    lab4Controller::class, 'firstQuery'
-])->name('firstQuery');
-
-Route::get('/resume/lab4/secondQuery', [
-    lab4Controller::class, 'secondQuery'
-])->name('secondQuery');
-
-Route::get('/resume/lab4/thirdQuery', [
-    lab4Controller::class, 'thirdQuery'
-])->name('thirdQuery');
-
-Route::get('/resume/lab4/fourthQuery', [
-    lab4Controller::class, 'fourthQuery'
-])->name('fourthQuery');
-
+Route::get('/course/{id}', [
+    IndexController::class, 'course'
+])->name('course')->middleware('auth');
