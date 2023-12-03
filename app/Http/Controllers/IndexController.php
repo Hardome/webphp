@@ -8,6 +8,7 @@ use App\Models\LanguageGroup;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
@@ -173,8 +174,7 @@ class IndexController extends Controller
         }
 
         if ($request->full === 'true') {
-            $courses->withCount('members as members_count')
-            ->where('limit', '=', 'courses_members');
+            $courses->whereRaw('`limit` = (select count(*) from courses_members where courses.id = courses_members.courseId)');
         }
 
         if ($request->ended === 'true') {
