@@ -30,6 +30,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Название курса</th>
+                    <th scope="col">Пользователь</th>
                     <th scope="col">Дата начала курса</th>
                     <th scope="col"></th>
                 </tr>
@@ -39,17 +40,18 @@
                     <tr>
                         <td>{{ $record->id }}</td>
                         <td>{{ $record->course['title'] }}</td>
+                        <td>{{ $record->user['name'] }}</td>
                         <td>{{ date('d.m.Y, H:i', strtotime($record->course['startAt'])) }}</td>
                         <td>
-                            @if($record->canDeleteRecord)
+{{--                            @if($record->canDeleteRecord)--}}
                                 <form id="delete-form" action="{{ route('deleteRecord', ['id' => $record->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit">Удалить запись</button>
                                 </form>
-                            @else
-                                До начала курса менее одних суток
-                            @endif
+{{--                            @else--}}
+{{--                                До начала курса менее одних суток--}}
+{{--                            @endif--}}
                         </td>
                     </tr>
                 @endforeach

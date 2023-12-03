@@ -71,7 +71,7 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Китайский язык для начинающих',
                 'description' => 'Цель: формирование произношения, изучение разговорных, обиходных выражений, овладение основными принципами построения различных моделей предложений, знакомство с основами китайской культуры.',
                 'limit' => 10,
-                'startAt' => date('2023-11-02 18:00:00.000'),
+                'startAt' => date('2023-12-25 18:00:00.000'),
                 'created_at' => now(),
                 'image' => 'photos/images (2).jpg',
                 'languageGroupId' => 4
@@ -80,7 +80,7 @@ class DatabaseSeeder extends Seeder
                 'title' => 'English for Special Purposes',
                 'description' => 'Цель: развитие всех видов речевой деятельности (чтение, говорение, аудирование, письмо, основы устного и письменного перевода), формирование деловой и коммуникативной компетенции на темах, связанных с современным бизнесом.',
                 'limit' => 12,
-                'startAt' => date('2023-12-02 12:00:00.000'),
+                'startAt' => date('2024-01-15 12:00:00.000'),
                 'created_at' => now(),
                 'image' => 'photos/images (3).jpg',
                 'languageGroupId' => 1
@@ -98,7 +98,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'courseId' => 3,
-                'userId' => 1
+                'userId' => 2
             ]
         ]);
     }

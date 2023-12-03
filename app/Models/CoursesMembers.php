@@ -18,16 +18,16 @@ class CoursesMembers extends Model
 
     public $timestamps = false;
 
-    protected $appends = ['canDeleteRecord'];
+    protected $appends = ['canDeleteRecord', 'isStarted'];
 
     public function course():HasOne
     {
         return $this->hasOne(Courses::class, 'id', 'courseId');
     }
 
-    public function users():HasMany
+    public function user():HasOne
     {
-        return $this->hasMany(User::class, 'id', 'userId');
+        return $this->hasOne(User::class, 'id', 'userId');
     }
 
     public function getCanDeleteRecordAttribute(): bool
@@ -37,5 +37,12 @@ class CoursesMembers extends Model
         $currentDatePlusOneDay = Carbon::now()->addDay();
 
         return $timestampDate->greaterThan($currentDatePlusOneDay);
+    }
+
+    public function getIsStartedAttribute(): bool
+    {
+        $timestampDate = Carbon::parse($this->course['startAt']);
+
+        return Carbon::now()->greaterThan($timestampDate);
     }
 }

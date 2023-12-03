@@ -46,6 +46,8 @@
                                         @method('DELETE')
                                         <button type="submit">Удалить запись</button>
                                     </form>
+                                @elseif($record->isStarted)
+                                    Курс уже начался
                                 @else
                                     До начала курса менее одних суток
                                 @endif
