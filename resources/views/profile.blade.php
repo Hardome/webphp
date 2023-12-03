@@ -36,7 +36,7 @@
                 <tbody>
                     @foreach ($records as $record)
                         <tr>
-                            <th scope="row">1</th>
+                            <td>{{ $loop->index+1 }}</td>
                             <td>{{ $record->course['title'] }}</td>
                             <td>{{ date('d.m.Y, H:i', strtotime($record->course['startAt'])) }}</td>
                             <td>

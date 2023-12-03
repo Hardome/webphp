@@ -41,6 +41,21 @@ class DatabaseSeeder extends Seeder
             ]
         ]);
 
+        DB::table('language_groups')->insert([
+            [
+                'name' => 'Английский'
+            ],
+            [
+                'name' => 'Французский'
+            ],
+            [
+                'name' => 'Немецкий'
+            ],
+            [
+                'name' => 'Китайский'
+            ]
+        ]);
+
 
         DB::table('courses')->insert([
             [
@@ -49,7 +64,8 @@ class DatabaseSeeder extends Seeder
                 'limit' => 15,
                 'startAt' => date('2023-10-02 15:30:00.000'),
                 'created_at' => now(),
-                'image' => 'photos/images (1).jpg'
+                'image' => 'photos/images (1).jpg',
+                'languageGroupId' => 1
             ],
             [
                 'title' => 'Китайский язык для начинающих',
@@ -57,7 +73,8 @@ class DatabaseSeeder extends Seeder
                 'limit' => 10,
                 'startAt' => date('2023-11-02 18:00:00.000'),
                 'created_at' => now(),
-                'image' => 'photos/images (2).jpg'
+                'image' => 'photos/images (2).jpg',
+                'languageGroupId' => 4
             ],
             [
                 'title' => 'English for Special Purposes',
@@ -65,7 +82,8 @@ class DatabaseSeeder extends Seeder
                 'limit' => 12,
                 'startAt' => date('2023-12-02 12:00:00.000'),
                 'created_at' => now(),
-                'image' => 'photos/images (3).jpg'
+                'image' => 'photos/images (3).jpg',
+                'languageGroupId' => 1
             ]
         ]);
 

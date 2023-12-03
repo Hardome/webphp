@@ -62,6 +62,18 @@ Route::get('/admin', [
     IndexController::class, 'admin'
 ])->name('admin')->middleware('auth');
 
-Route::get('/courseRecords/{id}', [
+Route::get('/courseRecords', [
     IndexController::class, 'courseRecords'
-])->name('courseRecords')->middleware('auth');
+])->name('courseRecords');
+
+Route::delete('/deleteRecordInAdminPage/{id}', [
+    IndexController::class, 'deleteRecordInAdminPage'
+])->name('deleteRecordInAdminPage')->middleware('auth');
+
+Route::get('/language/{id}', [
+    IndexController::class, 'language'
+])->name('language')->middleware('auth');
+
+Route::get('/list', [
+    IndexController::class, 'list'
+])->name('list')->middleware('auth');

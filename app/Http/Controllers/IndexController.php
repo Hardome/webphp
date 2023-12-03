@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Courses;
 use App\Models\CoursesMembers;
+use App\Models\LanguageGroup;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,7 +39,9 @@ class IndexController extends Controller
 
     public function courseAdd()
     {
-        return view('addCourse');
+        return view('addCourse', [
+            'groups' => LanguageGroup::all()
+        ]);
     }
 
     public function storeCourse(Request $request)
@@ -52,7 +55,8 @@ class IndexController extends Controller
             'description' => 'required',
             'startAt' => 'required',
             'image' => 'required',
-            'limit' => 'required|numeric'
+            'limit' => 'required|numeric',
+            'languageGroupId' => 'required|numeric'
         ]);
 
         if ($request->hasFile('image')) {
@@ -115,12 +119,83 @@ class IndexController extends Controller
     {
         return view('admin', [
             'user' => Auth::user(),
-            'courses' => Courses::all()
+            'courses' => Courses::all(),
+            'records' => CoursesMembers::all()
         ]);
     }
 
-    public function courseRecords($id)
+    public function courseRecords(Request $request)
     {
-        return CoursesMembers::where('courseId',  $id)->get();
+        $records = CoursesMembers::where('courseId',  $request->courseId)->get();
+
+        return view('members', [
+            'records' => $records
+        ])->render();
+    }
+
+    public function deleteRecordInAdminPage($id)
+    {
+        $record = CoursesMembers::findOrFail($id);
+
+        $record->delete();
+
+        return redirect()->route('admin');
+    }
+
+    public function language($id)
+    {
+        $group = LanguageGroup::findOrFail($id);
+
+        $courses = $group->courses;
+
+        $courses = $courses->map(
+            function ($course) {
+                $course['hasRecord'] = $course->members->contains('userId', Auth::user()->id);
+
+                return $course;
+            },
+            $courses
+        );
+
+        return view('language', [
+            'group' => $group,
+            'courses' => $courses,
+            'role' => Auth::user()->isAdmin
+        ]);
+    }
+
+    public function list(Request $request)
+    {
+        $courses = Courses::orderBy('created_at', 'desc');
+
+        if ($request->active === 'true') {
+            $courses->where('startAt', '>',  now());
+        }
+
+        if ($request->full === 'true') {
+            $courses->withCount('members as members_count')
+            ->where('limit', '=', 'courses_members');
+        }
+
+        if ($request->ended === 'true') {
+            $courses->where('startAt', '<',  now());
+        }
+
+
+        $courses = $courses->get();
+
+        $courses = $courses->map(
+            function ($course) {
+                $course['hasRecord'] = $course->members->contains('userId', Auth::user()->id);
+
+                return $course;
+            },
+            $courses
+        );
+
+        return view('list', [
+            'courses' => $courses,
+            'role' => Auth::user()->isAdmin
+        ]);
     }
 }

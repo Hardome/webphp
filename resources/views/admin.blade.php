@@ -1,30 +1,11 @@
 @extends('layouts.main')
 
-<script>
-    function getMarks(value) {
-        const mark = value;
-
-        if (mark) {
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("mark").disabled = false;
-                    document.getElementById("mark").innerHTML = this.responseText;
-                }
-            };
-            xmlhttp.open("GET", "courseRecords/" + mark, true);
-            xmlhttp.send();
-        }
-    }
-</script>
-
 @section('header')
     <div class="row">
-        {{--        <a href="{{ route('rubric', ['id' => $statya->rubric->id]) }}"><h4>{{ $statya->rubric->name }}</h4></a>--}}
         <article>
             <div class="twelve columns">
                 <h1>Выберите курс:</h1>
-                    <select class="form-select" onchange="getMarks(this.value)">
+                    <select class="form-select">
                         <option selected disabled hidden="">Выбрать</option>
                         @foreach ($courses as $course)
                             <option value="{{ $course->id }}">{{ $course->title }}</option>
@@ -43,39 +24,65 @@
 @section('content')
 
     <section class="section_light">
-        <div class="row">
-            <table class="table">
+        <div class="row" style="min-height: 400px">
+            <table class="table" style="min-width: 700px">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">ФИО</th>
+                    <th scope="col">Название курса</th>
+                    <th scope="col">Дата начала курса</th>
                     <th scope="col"></th>
                 </tr>
                 </thead>
-                <tbody>
-{{--                @foreach ($records as $record)--}}
-{{--                    <tr>--}}
-{{--                        <th scope="row">1</th>--}}
-{{--                        <td>{{ $record->course['title'] }}</td>--}}
-{{--                        <td>{{ date('d.m.Y, H:i', strtotime($record->course['startAt'])) }}</td>--}}
-{{--                        <td>--}}
-{{--                            @if($record->canDeleteRecord)--}}
-{{--                                <form id="delete-form" action="{{ route('deleteRecord', ['id' => $record->id]) }}" method="POST">--}}
-{{--                                    @csrf--}}
-{{--                                    @method('DELETE')--}}
-{{--                                    <button type="submit">Удалить запись</button>--}}
-{{--                                </form>--}}
-{{--                            @else--}}
-{{--                                До начала курса менее одних суток--}}
-{{--                            @endif--}}
-{{--                        </td>--}}
-{{--                    </tr>--}}
-{{--                @endforeach--}}
+                <tbody class="table-body">
+                @foreach ($records as $record)
+                    <tr>
+                        <td>{{ $record->id }}</td>
+                        <td>{{ $record->course['title'] }}</td>
+                        <td>{{ date('d.m.Y, H:i', strtotime($record->course['startAt'])) }}</td>
+                        <td>
+                            @if($record->canDeleteRecord)
+                                <form id="delete-form" action="{{ route('deleteRecord', ['id' => $record->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit">Удалить запись</button>
+                                </form>
+                            @else
+                                До начала курса менее одних суток
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
     </section>
 
 @endsection
+
+@section('js')
+    <script>
+        $(document).ready( function () {
+            $('.form-select').change(function () {
+                const item = this.value;
+
+                $.ajax({
+                    url: "{{ route('courseRecords') }}",
+                    type: 'GET',
+                    data: {
+                        courseId: item
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: (response) => {
+                        $('.table-body').html(response);
+                    }
+                })
+            })
+        })
+    </script>
+@endsection
+
 
 

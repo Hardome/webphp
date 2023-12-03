@@ -19,6 +19,16 @@
                     <p>Дата и время начала <input name="startAt" type="datetime-local" value="{{old('startAt')}}">
                     <p>Фото <input name="image" type="file" value="{{old('image')}}">
                     <p>Количество участников <input name="limit" type="number" value="{{old('limit')}}">
+                    <p>Язык <select class="form-select" name="languageGroupId">
+                            <option selected disabled hidden="">Выбрать</option>
+                            @foreach ($groups as $language)
+                                @if (old('rubricsId') == $language->id)
+                                    <option value="{{$language->id}}" selected>{{$language->name}}</option>
+                                @else
+                                    <option value="{{$language->id}}">{{$language->name}}</option>
+                                @endif
+                            @endforeach
+                        </select>
 
                     <p><input type="submit" value="Добавить курс" />
                 </form>

@@ -2,19 +2,6 @@
 
 @section('header')
     <h1>Языковая школа LINGVO</h1>
-
-    <label>
-        Активный курс
-        <input type="checkbox" value="active" class="active-input">
-    </label>
-    <label>
-        Завершенный курс
-        <input type="checkbox" value="ended" class="ended-input">
-    </label>
-    <label>
-        Мест нет
-        <input type="checkbox" value="full" class="full-input">
-    </label>
 @endsection
 
 @section('sidebar')
@@ -24,12 +11,15 @@
 @section('content')
     <section>
         <div class="row">
-            <section class="eight columns" style="min-height: 400px;">
-                @foreach ($courses as $course)
+            <section class="eight columns">
+
+                <h3>{{$group->name}}</h3>
+
+                @foreach ($group->courses as $course)
                     <article class="blog_post">
 
                         <div class="three columns">
-                            <a href="{{ route('course', ['id' => $course->id]) }}" class="th"><img src="storage/{{ $course->image }}" alt="desc" /></a>
+                            <a href="{{ route('course', ['id' => $course->id]) }}" class="th"><img src="../storage/{{ $course->image }}" alt="desc" /></a>
                         </div>
                         <div class="nine columns">
                             <a href="{{ route('course', ['id' => $course->id]) }}"><h4>{{ $course->title }}</h4></a>
@@ -73,36 +63,6 @@
             @endif
         </div>
     </section>
-@endsection
-
-@section('js')
-    <script>
-        $(document).ready( function () {
-            $('.active-input, .ended-input, .full-input').change(function () {
-                const active = $('.active-input').is(':checked');
-                const ended = $('.ended-input').is(':checked');
-                const full = $('.full-input').is(':checked');
-
-                console.log({active, ended, full})
-
-                $.ajax({
-                    url: "{{ route('list') }}",
-                    type: 'GET',
-                    data: {
-                        active: active,
-                        ended: ended,
-                        full: full
-                    },
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success: (response) => {
-                        $('.eight').html(response);
-                    }
-                })
-            })
-        })
-    </script>
 @endsection
 
 

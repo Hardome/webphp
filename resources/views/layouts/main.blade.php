@@ -13,13 +13,16 @@
     <title>Новости науки</title>
 
     <!-- Included CSS Files (Compressed) -->
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('css/foundation.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+{{--    <link rel="stylesheet" href="{{ asset('css/app.css') }}">--}}
 
     <script src="{{ asset('js/modernizr.foundation.js') }}"></script>
 
-    <link rel="stylesheet" href="{{ asset('fonts/ligature.css') }}">
+
+
+{{--    <link rel="stylesheet" href="{{ asset('fonts/ligature.css') }}">--}}
 
     <!-- Google fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display:400italic' rel='stylesheet' type='text/css' />
@@ -44,16 +47,24 @@
             <ul id="menu-header" class="nav-bar horizontal">
 
                 <li><a href="{{ route('index') }}">Главная</a></li>
-                <li><a href="{{ route('course', ['id' => 1]) }}">Английский</a></li>
-                <li><a href="{{ route('course', ['id' => 2]) }}">Французский</a></li>
-                <li><a href="{{ route('course', ['id' => 3]) }}">Немецкий</a></li>
-                <li><a href="{{ route('course', ['id' => 4]) }}">Китайский</a></li>
+                <li><a href="{{ route('language', ['id' => 1]) }}">Английский</a></li>
+                <li><a href="{{ route('language', ['id' => 2]) }}">Французский</a></li>
+                <li><a href="{{ route('language', ['id' => 3]) }}">Немецкий</a></li>
+                <li><a href="{{ route('language', ['id' => 4]) }}">Китайский</a></li>
 
                 <li><a href="{{ route('profile') }}"><b>Профиль</b></a></li>
 
-                <li><a href="{{ route('admin') }}"><b>Админка</b></a></li>
+                @if(Auth::user()->isAdmin)
+                    <li><a href="{{ route('admin') }}"><b>Админка</b></a></li>
+                @endif
 
-                @yield('sidebar')
+                <li><a href="{{ route('logout') }}"  onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                        <b>Выйти</b></a></li>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
             </ul>
 
         </div>
@@ -142,7 +153,7 @@
 
 <!-- Included JS Files (Compressed) -->
 <script src="{{ asset('js/foundation.min.js') }}" type="text/javascript"></script>
+@yield('js')
 <!-- Initialize JS Plugins -->
-<script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
 </body>
 </html>

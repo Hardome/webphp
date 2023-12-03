@@ -18,6 +18,8 @@ return new class extends Migration
             $table->timestamp('startAt');
             $table->integer('limit');
             $table->string('image');
+            $table->unsignedBigInteger('languageGroupId');
+            $table->foreign('languageGroupId')->references('id')->on('language_groups');
             $table->timestamps();
         });
     }
