@@ -5,10 +5,10 @@
         {{--        <a href="{{ route('rubric', ['id' => $statya->rubric->id]) }}"><h4>{{ $statya->rubric->name }}</h4></a>--}}
         <article>
             <div class="twelve columns">
-                <img src="../storage/{{ $user->image }}" alt="desc" width=200 align=left hspace=30>
-                <h1>{{ $user->name }}</h1>
+                <h1>Мой профиль</h1>
                 <p class="excerpt">
-                    Мои курсы:
+                    <img src="../storage/{{ $user->image }}" alt="desc" width=200 align=left hspace=30>
+                    {{ $user->name }}
                 </p>
             </div>
         </article>

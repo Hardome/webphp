@@ -1,12 +1,13 @@
 @extends('layouts.main')
 
 @section('header')
-    <div class="row">
+    <div class="">
         <article>
-            <div class="twelve columns">
-                <h1>Выберите курс:</h1>
-                    <select class="form-select">
-                        <option selected disabled hidden="">Выбрать</option>
+            <h2>Админка</h2>
+            <div class="" style="display: flex; gap: 30px;">
+                <h3>Выберите курс:</h3>
+                    <select class="form-select" style="width: 300px; font-size: 16px;">
+                        <option selected disabled hidden>Выбрать</option>
                         @foreach ($courses as $course)
                             <option value="{{ $course->id }}">{{ $course->title }}</option>
                         @endforeach

@@ -57,7 +57,7 @@
                             <label for="isAdmin" class="col-md-4 col-form-label text-md-end">{{ __('Администратор?') }}</label>
 
                             <div class="col-md-6">
-                                <input id="isAdmin" type="checkbox" class="@error('isAdmin') is-invalid @enderror" name="isAdmin" value="true" autocomplete="isAdmin">
+                                <p> Да <input id="isAdmin" type="checkbox" class="@error('isAdmin') is-invalid @enderror" name="isAdmin" value="true" autocomplete="isAdmin">
 
                                 @error('isAdmin')
                                 <span class="invalid-feedback" role="alert">
