@@ -3,18 +3,20 @@
 @section('header')
     <h1>Языковая школа LINGVO</h1>
 
-    <label>
-        Активный курс
-        <input type="checkbox" value="active" class="active-input">
-    </label>
-    <label>
-        Завершенный курс
-        <input type="checkbox" value="ended" class="ended-input">
-    </label>
-    <label>
-        Мест нет
-        <input type="checkbox" value="full" class="full-input">
-    </label>
+    <div style="display: flex; gap: 30px;">
+        <label style="font-size: 16px; display: flex; align-items: center; gap: 10px;">
+            Активный курс
+            <input type="checkbox" value="active" class="active-input">
+        </label>
+        <label style="font-size: 16px; display: flex; align-items: center; gap: 10px;">
+            Завершенный курс
+            <input type="checkbox" value="ended" class="ended-input">
+        </label>
+        <label style="font-size: 16px; display: flex; align-items: center; gap: 10px;">
+            Мест нет
+            <input type="checkbox" value="full" class="full-input">
+        </label>
+    </div>
 @endsection
 
 @section('sidebar')
