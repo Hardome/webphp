@@ -2,7 +2,7 @@
 
 @section('sidebar')
     @parent
-    <li><a href="">Резюме по профессиям</a></li>
+{{--    <li><a href="">Резюме по профессиям</a></li>--}}
 @stop
 
 @section('content')

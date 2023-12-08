@@ -26,7 +26,7 @@
           <td>{{ $person->id }}</td>
           <td>{{ $person->FIO }}</td>
           <td>{{ $person->Stage}}</td>
-          <td>{{ $person->staff/*->staff*/ }}</td>
+          <td>{{ $person->staff->staff }}</td>
         </tr>
 
       @endforeach

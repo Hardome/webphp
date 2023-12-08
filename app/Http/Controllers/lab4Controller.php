@@ -23,16 +23,16 @@ class lab4Controller extends Controller
 
   public function secondQuery()
   {
-    return view('lab4.second', [
-        'Persons' => Person::join('Staff', 'person.Staff', '=', 'staff.id')
-        ->where('Staff.staff', 'Программист')
-        ->get()
-    ]);
+//    return view('lab4.second', [
+//        'Persons' => Person::join('Staff', 'person.Staff', '=', 'staff.id')
+//        ->where('Staff.staff', 'Программист')
+//        ->get()
+//    ]);
 
-    // return view('lab4.second', [
-    //     'Persons' => Person::where('Staff', 1)
-    //     ->get()
-    // ]);
+     return view('lab4.second', [
+         'Persons' => Person::where('Staff', 1)
+         ->get()
+     ]);
   }
 
   public function thirdQuery()

@@ -33,7 +33,7 @@ class IndexController extends Controller
   public function storeResume(Request $request)
   {
     $request->validate([
-      'FIO' => 'required|max:255',
+      'FIO' => 'required|max:255|string',
       'Phone' => 'required|string',
       'Stage' => 'required|numeric',
       'Staff' => 'required|numeric',
