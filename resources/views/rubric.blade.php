@@ -35,7 +35,7 @@
                                 <p> {{ explode('.', $statya->content)[1] ??  explode('.', $statya->content)[0]}}.</p>
 
                                 @if($role === 1)
-                                    <form id="delete-form" action="{{ route('deleteNews', ['id' => $statya->id]) }}" method="POST">
+                                    <form id="delete-form" action="{{ route('deleteNews', ['id' => $statya->id, 'from' => 'rubric']) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit">Удалить</button>

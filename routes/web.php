@@ -46,6 +46,6 @@ Route::get('/statya/{id}', [
     IndexController::class, 'statya'
 ])->name('statya')->middleware('auth');
 
-Route::delete('/statya/{id}', [
+Route::delete('/statya/{id}/{from}', [
     IndexController::class, 'deleteNews'
 ])->name('deleteNews');

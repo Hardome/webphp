@@ -11,6 +11,8 @@
     <meta name="viewport" content="width=device-width" />
 
     <title>Новости науки</title>
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
 
     <!-- Included CSS Files (Compressed) -->
     <link rel="stylesheet" href="{{ asset('css/foundation.min.css') }}">
@@ -20,6 +22,7 @@
     <script src="{{ asset('js/modernizr.foundation.js') }}"></script>
 
     <link rel="stylesheet" href="{{ asset('fonts/ligature.css') }}">
+
 
     <!-- Google fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display:400italic' rel='stylesheet' type='text/css' />
@@ -41,7 +44,7 @@
     <div class="twelve columns header_nav">
         <div class="row">
 
-            <ul id="menu-header" class="nav-bar horizontal">
+            <ul id="menu-header" class="nav-bar horizontal" style="height: 60px;">
 
                 <li><a href="{{ route('index') }}">Главная</a></li>
                 <li><a href="{{ route('rubric', ['id' => 1]) }}">Искусственный интеллект</a></li>
@@ -50,7 +53,13 @@
                 <li><a href="{{ route('rubric', ['id' => 4]) }}">Робототехника</a></li>
                 <li><a href="{{ route('rubric', ['id' => 5]) }}">Информационное общество</a></li>
                 <li><a href="{{ route('rubric', ['id' => 6]) }}">Автоматическая обработка текста</a></li>
+                <li><a href="{{ route('logout') }}"  onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                        <b>Выйти</b></a></li>
 
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
                 @yield('sidebar')
             </ul>
 

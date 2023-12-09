@@ -21,6 +21,14 @@
                             <div class="nine columns">
                                 <a href="{{ route('statya', ['id' => $statya->id]) }}"><h4>{{ $statya->title }}</h4></a>
                                 <p> {{ explode('.', $statya->content)[1] ??  explode('.', $statya->content)[0] }}.</p>
+
+                                @if($role === 1)
+                                    <form id="delete-form" action="{{ route('deleteNews', ['id' => $statya->id, 'from' => 'index']) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit">Удалить</button>
+                                    </form>
+                                @endif
                             </div>
                         </article>
                     @endforeach

@@ -71,7 +71,7 @@ class IndexController extends Controller
         return redirect()->route('statya', ['id' => $statya->id]);
     }
 
-    public function deleteNews($id)
+    public function deleteNews($id, $from)
     {
         $statya = News::findOrFail($id);
 
@@ -81,6 +81,11 @@ class IndexController extends Controller
 
         $statya->delete();
 
-        return redirect()->route('rubric', ['id' => $statya->rubricsId]);
+        if ($from === 'rubric') {
+            return redirect()->route('rubric', ['id' => $statya->rubricsId]);
+        }
+        else {
+            return redirect()->route('index');
+        }
     }
 }
