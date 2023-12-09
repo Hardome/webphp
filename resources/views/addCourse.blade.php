@@ -20,7 +20,7 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                    <p>Описание <textarea name="description" class="form-control @error('description') is-invalid @enderror" type="text" rows="4" cols="50">{{old('description')}}</textarea>
+                    <p>Описание <textarea name="description" style="font-size: 16px;" class="form-control @error('description') is-invalid @enderror" type="text" rows="4" cols="50">{{old('description')}}</textarea>
                     @error('description')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
