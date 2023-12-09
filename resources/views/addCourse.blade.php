@@ -26,13 +26,13 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                    <p>Дата и время начала <input name="startAt" class="form-control @error('startAt') is-invalid @enderror" type="datetime-local" value="{{old('startAt')}}">
+                    <p>Дата и время начала <input name="startAt" style="font-size: 16px;" class="form-control @error('startAt') is-invalid @enderror" type="datetime-local" value="{{old('startAt')}}">
                     @error('startAt')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                    <p>Фото <input name="image" class="form-control @error('image') is-invalid @enderror" type="file" value="{{old('image')}}">
+                    <p>Фото <input name="image" style="font-size: 16px;" class="form-control @error('image') is-invalid @enderror" type="file" value="{{old('image')}}">
                     @error('image')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -44,7 +44,7 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                    <p>Язык <select class="form-select" class="form-control @error('languageGroupId') is-invalid @enderror" name="languageGroupId">
+                    <p>Язык <select class="form-select" style="font-size: 16px;" class="form-control @error('languageGroupId') is-invalid @enderror" name="languageGroupId">
                             <option selected disabled hidden="">Выбрать</option>
                             @foreach ($groups as $language)
                                 @if (old('languageGroupId') == $language->id)
