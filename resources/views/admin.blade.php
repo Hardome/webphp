@@ -45,7 +45,7 @@
                         <td>{{ date('d.m.Y, H:i', strtotime($record->course['startAt'])) }}</td>
                         <td>
 {{--                            @if($record->canDeleteRecord)--}}
-                                <form id="delete-form" action="{{ route('deleteRecord', ['id' => $record->id]) }}" method="POST">
+                                <form id="delete-form" action="{{ route('deleteRecordInAdminPage', ['id' => $record->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit">Удалить запись</button>
