@@ -1,31 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Cabinet</title>
+    <title> @yield('title') </title>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/responsive.css') }}">
 </head>
-<body class="dp">
+<body>
 <div class="header">
-    <div class="row grid middle between">
+    <div class="myRow grid middle between">
         <div class="logo">
-            <img src="{{ asset('img/logo.png') }}">
+            <a href="{{ route('index') }}"><img src="{{ asset('img/logo.png') }}"></a>
         </div>
         <div class="title">
             Клуб любителей творчества «ОчУмелые ручки»
         </div>
         <div class="auth">
-            <a href="">Вход</a>
+            @guest
+                <a href="{{ route('login') }}">Вход</a>
+            @else
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                    {{ __('Выйти') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            @endguest
         </div>
     </div>
 </div>
 <div class="row row--nogutter">
     <div class="menu-burger">
         <div class="burger">
-            <div></div>
-            <div></div>
-            <div></div>
+            <div>edfg</div>
+            <div>dfg</div>
+            <div>dsfg</div>
         </div>
     </div>
 </div>
