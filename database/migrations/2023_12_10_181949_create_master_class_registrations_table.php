@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('masterClassId');
             $table->foreign('userId')->references('id')->on('users');
             $table->foreign('masterClassId')->references('id')->on('master_classes');
+            $table->unique(['userId','masterClassId'], 'userId_masterClassId_unique');
 //            $table->timestamps();
         });
     }

@@ -17,7 +17,12 @@
                         <tr>
                             <td>{{ $masterClass->startAtLocale }}</td>
                             <td>
-                                <b>{{ $masterClass->name }}</b>
+                                <b>
+                                    <a style="text-decoration: none;"
+                                      href="{{ route('masterClass', ['id' => $masterClass->id])  }}">
+                                        {{ $masterClass->name }}
+                                    </a>
+                                </b>
                                 @foreach ($masterClass->registrations as $registration)
                                     <p>
                                         {{ $loop->index + 1 }}. {{ $registration->user['name'] }} <br>

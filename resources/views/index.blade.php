@@ -44,10 +44,13 @@
                 Развивайтесь, творите и вдохновляйтесь вместе с нами!</p>
 
         </div>
-        <ul class="menu" style="height: 300px;">
+        <ul class="menu" style="height: min-content;">
             <li><a href="{{ route('creativity', ['name' => 'Архитектурное моделирование']) }}">Архитектурное моделирование</a></li>
             <li><a href="{{ route('creativity', ['name' => 'Кулинария']) }}">Кулинария</a></li>
             <li><a href="{{ route('creativity', ['name' => 'Резьба по дереву']) }}">Резьба по дереву</a></li>
+            @if(Auth::user()->isMaster ?? false)
+                <b><li><a href="{{ route('profile') }}">Профиль</a></li></b>
+            @endif
         </ul>
     </div>
 @endsection

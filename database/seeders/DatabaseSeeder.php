@@ -174,6 +174,6 @@ class DatabaseSeeder extends Seeder
             ]
         ]);
 
-        MasterClassRegistration::factory(30)->create();
+//        MasterClassRegistration::factory(30)->create();
     }
 }

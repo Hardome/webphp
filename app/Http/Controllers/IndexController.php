@@ -26,8 +26,20 @@ class IndexController extends Controller
             $creativity = Creativity::where('name', $request->name)->first();
         }
 
+        $master_classes = $creativity->master_classes;
+
+        $master_classes = $master_classes->map(
+            function ($master_class) {
+                $master_class['hasRecord'] = $master_class->registrations->contains('userId', Auth::user()->id ?? 0);
+
+                return $master_class;
+            },
+            $master_classes
+        );
+
         return view('creativity', [
-            'creativity' => $creativity
+            'creativity' => $creativity,
+            'master_classes' => $master_classes
         ]);
     }
 
@@ -80,5 +92,40 @@ class IndexController extends Controller
         $masterClass->save();
 
         return redirect()->route('profile');
+    }
+
+    public function courseRegister($masterClassId)
+    {
+        if (!isset(Auth::user()->id)) {
+            return redirect()->route('index');
+        }
+
+        $masterClass = MasterClass::findOrFail($masterClassId);
+//        $hasRecord = $masterClass->registrations->contains('userId', Auth::user()->id ?? 0);
+//        $hasFullLimit = $masterClass->registrations->count() >= $masterClass->limit;
+
+        if (!$masterClass->canRegister) {
+            redirect()->route('index');
+        }
+
+        $registration = new MasterClassRegistration([
+            'userId' => Auth::user()->id,
+            'masterClassId' => $masterClassId
+        ]);
+
+        $registration->save();
+
+        return redirect()->route('index');
+    }
+
+    public function masterClass($id)
+    {
+        if (Auth::user()->isMaster === 0) {
+            return redirect()->route('index');
+        }
+
+        return view('masterClass', [
+            'masterClass' => MasterClass::findOrFail($id)
+        ]);
     }
 }

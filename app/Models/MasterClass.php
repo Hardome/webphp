@@ -17,11 +17,25 @@ class MasterClass extends Model
     protected $table = 'master_classes';
     protected $guarded = ['id'];
 
-    protected $appends = ['startAtLocale'];
+    protected $appends = ['startAtLocale', 'canRegister'];
+
+    protected $casts = [
+        'startAt' => 'datetime',
+    ];
 
     public function creator():HasOne
     {
         return $this->hasOne(User::class, 'id', 'creatorId');
+    }
+
+    public function creativity():HasOne
+    {
+        return $this->hasOne(Creativity::class, 'id', 'creativityId');
+    }
+
+    public function registrations():HasMany
+    {
+        return $this->hasMany(MasterClassRegistration::class, 'masterClassId', 'id');
     }
 
     public function getStartAtLocaleAttribute(): string
@@ -29,8 +43,11 @@ class MasterClass extends Model
         return Date::parse($this->startAt)->format('j F H:i');
     }
 
-    public function registrations():HasMany
+    public function getCanRegisterAttribute():bool
     {
-        return $this->hasMany(MasterClassRegistration::class, 'masterClassId', 'id');
+        $hasEmptySpace = $this->registrations()->count() < $this->limit;
+        $notStarted = $this->startAt->isFuture();
+
+        return $hasEmptySpace && $notStarted;
     }
 }
