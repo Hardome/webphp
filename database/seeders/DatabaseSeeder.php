@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\MasterClassRegistration;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -13,12 +16,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+         User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+//         \App\Models\User::factory()->create([
+//             'name' => 'Test User',
+//             'email' => 'test@example.com',
+//         ]);
 
         DB::table('creativity')->insert([
             [
@@ -49,5 +52,128 @@ class DatabaseSeeder extends Seeder
                 'created_at' => now()
             ]
         ]);
+
+        DB::table('users')->insert([
+            [
+                'name' => 'Елена Олеговна Блиновская',
+                'phone' => 89120000005,
+                'image' => 'driver1.png',
+                'created_at' => now(),
+                'email' => 'blinovskaya@ya.ru',
+                'password' => '$2y$12$imkz9a2rkqzfHIfnFeJjnes.aHKvYV1GOUoY4Z/XPHNAXguXFCOVO', //user
+                'isMaster' => true
+            ],
+            [
+                'name' => 'Аяз Шабутдинов',
+                'phone' => 89321111111,
+                'image' => 'driver3.png',
+                'created_at' => now(),
+                'email' => 'ayaz@gmail.com',
+                'password' => '$2y$12$imkz9a2rkqzfHIfnFeJjnes.aHKvYV1GOUoY4Z/XPHNAXguXFCOVO', //user
+                'isMaster' => true
+            ],
+            [
+                'name' => 'Оксана Валерьевна Самойлова',
+                'phone' => 89122222222,
+                'image' => 'driver2.png',
+                'created_at' => now(),
+                'email' => 'dzhigan@bk.ru',
+                'password' => '$2y$12$imkz9a2rkqzfHIfnFeJjnes.aHKvYV1GOUoY4Z/XPHNAXguXFCOVO', //user
+                'isMaster' => true
+            ]
+        ]);
+
+        DB::table('master_classes')->insert([
+            [
+                'name' => '«Моделирование моделей транспорта»',
+                'description' => 'Мастер-класс «Моделирование моделей транспорта» научит основам моделирования различных
+                видов транспортных средств. Ученики строят, испытывают и запускают модели судов, самолетов и
+                автомобилей.',
+                'cost' => 5500,
+                'created_at' => now(),
+                'creativityId' => 1,
+                'creatorId' => 12,
+                'limit' => 5,
+                'startAt' => date('2024-01-15 09:00:00.000')
+//                'date' => Carbon::createFromFormat('d.m.Y', '10.01.2024'),
+//                'time' => Carbon::createFromFormat('H:i', '12:00')->format('H:i')
+            ],
+            [
+                'name' => '«Моделирование зданий и сооружений»',
+                'description' => 'Мастер-класс «Моделирование зданий и сооружений».
+                Опытные педагоги научат моделировать различные элементы малоэтажных жилых и нежилых зданий,
+                конструировать разные виды крыш и стен, а также собирать из элементов здания различной архитектуры.',
+                'cost' => 8000,
+                'created_at' => now(),
+                'creativityId' => 1,
+                'creatorId' => 12,
+                'limit' => 7,
+                'startAt' => date('2024-01-16 11:00:00.000')
+//                'date' => Carbon::createFromFormat('d.m.Y', '11.01.2024'),
+//                'time' => Carbon::createFromFormat('H:i', '15:00')->format('H:i')
+            ],
+            [
+                'name' => '«Шоколадные поделки»',
+                'description' => 'Мастер-класс «Шоколадные поделки»
+                Шоколадные фонтаны, фруктовые пальмы, приготовление шоколадных конфет, мороженого и других сладостей.
+                Вы готовите только из проверенных компонентов, делаете яства с любовью, что, несомненно, отражается на
+                их вкусе. Мы научим вас делать любой праздник оригинальнее и вкуснее!',
+                'cost' => 7750,
+                'created_at' => now(),
+                'creativityId' => 2,
+                'creatorId' => 13,
+                'limit' => 1,
+                'startAt' => date('2024-01-01 09:00:00.000')
+//                'date' => Carbon::createFromFormat('d.m.Y', '12.01.2024'),
+//                'time' => Carbon::createFromFormat('H:i', '18:00')->format('H:i')
+            ],
+            [
+                'name' => '«Приготовление стейков»',
+                'description' => 'Мастер-класс «Приготовление стейков»
+                Мы все любим стейки, но не у каждого из нас получается их правильно приготовить. На этом мастер-классе
+                мы расскажем вам всё о стейках: как выбрать мясо, какую часть использовать для того или иного вида
+                стейка, какие степени прожарки бывают. Мы приготовим гарнир и идеальный соус. Теперь вы сможете
+                порадовать своих гостей и себя самого идеальными стейками!',
+                'cost' => 6350,
+                'created_at' => now(),
+                'creativityId' => 2,
+                'creatorId' => 13,
+                'limit' => 10,
+                'startAt' => date('2024-02-16 09:00:00.000')
+//                'date' => Carbon::createFromFormat('d.m.Y', '15.01.2024'),
+//                'time' => Carbon::createFromFormat('H:i', '12:00')->format('H:i')
+            ],
+            [
+                'name' => '«Геометрическая резьба по дереву»',
+                'description' => 'Мастер-класс «Геометрическая резьба по дереву».
+                Данный мастер-класс для начинающих, знакомит с геометрической резьбой, с самых основных элементов.
+                Несложными движениями и творческим комбинированием создаются удивительные узоры на дереве. ',
+                'cost' => 10000,
+                'created_at' => now(),
+                'creativityId' => 3,
+                'creatorId' => 11,
+                'limit' => 6,
+                'startAt' => date('2024-02-01 13:00:00.000')
+//                'date' => Carbon::createFromFormat('d.m.Y', '16.01.2024'),
+//                'time' => Carbon::createFromFormat('H:i', '11:00')->format('H:i')
+            ],
+            [
+                'name' => '«Деревянные игрушки»',
+                'description' => 'Мастер-класс «Деревянные игрушки».
+                На мастер-классе вы научитесь вырезать фигурки животных из качественных пород дерева с помощью
+                профессиональных инструментов. Обработка фигурок натуральными составами обеспечит прочность,
+                долговечность и экологичность созданных игрушек. ',
+                'cost' => 3000,
+                'created_at' => now(),
+                'creativityId' => 3,
+                'creatorId' => 11,
+                'limit' => 20,
+                'startAt' => date('2024-02-06 15:00:00.000')
+//                'date' => Carbon::createFromFormat('d.m.Y', '20.01.2024'),
+//                'time' => Carbon::createFromFormat('H:i', '09:00')->format('H:i')
+            ]
+        ]);
+
+        MasterClassRegistration::factory(30)->create();
     }
 }

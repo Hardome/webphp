@@ -24,3 +24,11 @@ Route::get('/', [
 Route::get('/home', [
     App\Http\Controllers\HomeController::class, 'index'
 ])->name('home');
+
+Route::get('/creativity', [
+    IndexController::class, 'creativity'
+])->name('creativity');
+
+Route::get('/profile', [
+    IndexController::class, 'profile'
+])->name('profile')->middleware('auth');
