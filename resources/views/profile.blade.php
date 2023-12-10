@@ -31,9 +31,11 @@
                 </table>
             </div>
             <div class="driver-page-btn-wrapper">
-                <div class="driver-page-btn btn">
-                    Добавить мастер-класс
-                </div>
+                <a style="text-decoration: none;" href="{{ route('addMasterClass') }}">
+                    <div class="driver-page-btn btn">
+                       Добавить мастер-класс
+                    </div>
+                </a>
             </div>
         </div>
         <ul class="menu" style="height: 300px;">

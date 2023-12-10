@@ -32,3 +32,11 @@ Route::get('/creativity', [
 Route::get('/profile', [
     IndexController::class, 'profile'
 ])->name('profile')->middleware('auth');
+
+Route::get('/addMasterClass', [
+    IndexController::class, 'addMasterClass'
+])->name('addMasterClass')->middleware('auth');
+
+Route::post('/storeMasterClass', [
+    IndexController::class, 'storeMasterClass'
+])->name('storeMasterClass')->middleware('auth');
