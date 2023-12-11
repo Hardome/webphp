@@ -43,6 +43,9 @@
 </div>
 <div class="main">
     <div class="row">
+        <div style="position: relative; right: 0; height: auto; z-index: 30; left: 75%; width: auto;">
+            @yield('alert')
+        </div>
         @yield('content')
     </div>
 </div>

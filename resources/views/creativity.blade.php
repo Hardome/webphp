@@ -1,5 +1,13 @@
 @extends('layouts.main')
 
+@section('alert')
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
+@endsection
+
 @section('content')
     <div class="hover"></div>
     <div class="title">{{ $creativity->name }}</div>
@@ -49,7 +57,7 @@
                                             Вы записаны
                                         </h1>
                                     @elseif($masterClass->canRegister)
-                                        <form id="register-form" action="{{ route('course-register', ['id' => $masterClass->id ]) }}" method="POST" style="width: auto">
+                                        <form id="register-form" action="{{ route('registration', ['id' => $masterClass->id ]) }}" style="width: auto">
                                             @csrf
                                             <button class="driver-btn" type="submit">Записаться</button>
                                         </form>

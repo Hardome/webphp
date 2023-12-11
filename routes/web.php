@@ -41,6 +41,10 @@ Route::post('/storeMasterClass', [
     IndexController::class, 'storeMasterClass'
 ])->name('storeMasterClass')->middleware('auth');
 
+Route::get('/registration/{id}', [
+    IndexController::class, 'registration'
+])->name('registration')->middleware('auth');
+
 Route::post('/course-register/{id}', [
     IndexController::class, 'courseRegister'
 ])->name('course-register')->middleware('auth');
@@ -48,3 +52,7 @@ Route::post('/course-register/{id}', [
 Route::get('/masterClass/{id}', [
     IndexController::class, 'masterClass'
 ])->name('masterClass')->middleware('auth');
+
+Route::put('/masterClass/{id}', [
+    IndexController::class, 'updateMasterClass'
+])->name('updateMasterClass')->middleware('auth');

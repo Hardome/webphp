@@ -10,12 +10,15 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Jenssegers\Date\Date;
 
 class IndexController extends Controller
 {
     public function index()
     {
-        return view('index', []);
+        return view('index', [
+            'masterClasses' => Auth::user()->master_classes ?? null
+        ]);
     }
 
     public function creativity(Request $request)
@@ -94,6 +97,26 @@ class IndexController extends Controller
         return redirect()->route('profile');
     }
 
+    public function registration($masterClassId)
+    {
+        if (!isset(Auth::user()->id)) {
+            return redirect()->route('index');
+        }
+
+        $masterClass = MasterClass::findOrFail($masterClassId);
+
+        if (!$masterClass->canRegister) {
+            redirect()->route('index');
+        }
+
+        return view('registration', [
+            'masterClass' => $masterClass,
+            'user' => Auth::user(),
+            'time' => Date::parse($masterClass->startAt)->format('H:i'),
+            'date' => Date::parse($masterClass->startAt)->format('j F')
+        ]);
+    }
+
     public function courseRegister($masterClassId)
     {
         if (!isset(Auth::user()->id)) {
@@ -101,8 +124,6 @@ class IndexController extends Controller
         }
 
         $masterClass = MasterClass::findOrFail($masterClassId);
-//        $hasRecord = $masterClass->registrations->contains('userId', Auth::user()->id ?? 0);
-//        $hasFullLimit = $masterClass->registrations->count() >= $masterClass->limit;
 
         if (!$masterClass->canRegister) {
             redirect()->route('index');
@@ -115,7 +136,7 @@ class IndexController extends Controller
 
         $registration->save();
 
-        return redirect()->route('index');
+        return redirect()->route('creativity', ['id' => $masterClass->creativityId])->with('status', 'Вы успешно записаны на курс');
     }
 
     public function masterClass($id)
@@ -124,8 +145,33 @@ class IndexController extends Controller
             return redirect()->route('index');
         }
 
+        $masterClass = MasterClass::findOrFail($id);
+
         return view('masterClass', [
-            'masterClass' => MasterClass::findOrFail($id)
+            'masterClass' => $masterClass,
+            'time' => Date::parse($masterClass->startAt)->format('H:i'),
+            'date' => Date::parse($masterClass->startAt)->format('Y-m-d')
         ]);
+    }
+
+    public function updateMasterClass(Request $request, $id)
+    {
+        if (Auth::user()->isMaster === 0) {
+            return redirect()->route('index');
+        }
+
+        $request->validate([
+            'description' => 'required|string',
+            'cost' => 'required|numeric',
+        ]);
+
+        $masterClass = MasterClass::findOrFail($id);
+
+        $masterClass['cost'] = $request['cost'];
+        $masterClass['description'] = $request['description'];
+
+        $masterClass->save();
+
+        return redirect()->route('profile');
     }
 }

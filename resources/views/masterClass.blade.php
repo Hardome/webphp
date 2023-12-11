@@ -5,8 +5,9 @@
         <div class="line"></div>
     </div>
     <div class="myRow grid between" style="padding: 0 52px;">
-        <form method="post" action="{{ route('storeMasterClass') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ route('updateMasterClass', ['id' => $masterClass->id]) }}" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <h2>Форма добавления мастер-класса</h2>
             <div class="form-group">
                 <label>Вид творчества</label>
@@ -61,7 +62,7 @@
             <div class="form-group">
                 <label>Дата</label>
                 <input type="date" name="date" class="form-control @error('date') is-invalid @enderror"
-                       value="{{old('date')}}" disabled>
+                       value="{{ old('date') ?? $date }}" disabled>
                 @error('date')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -71,7 +72,7 @@
             <div class="form-group">
                 <label>Время</label>
                 <input type="time" name="time" class="form-control @error('time') is-invalid @enderror"
-                       value="{{old('time')}}" disabled>
+                       value="{{ old('time') ?? $time }}" disabled>
                 @error('time')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -81,7 +82,7 @@
             <div class="form-group">
                 <label>Количество человек в группе</label>
                 <input min="1" name="limit" class="form-control @error('limit') is-invalid @enderror" type="number"
-                       value="{{old('limit') ?? $masterClass->limit}}" disabled>
+                       value="{{ old('limit') ?? $masterClass->limit }}" disabled>
                 @error('limit')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
