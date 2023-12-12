@@ -6,7 +6,7 @@
     <div class="row--small grid between">
         <div class="content driver-page">
             <div class="driver-page-photo">
-                <img src="../storage/photos/{{ $user->image }}">
+                <img height="200px;" width="200px;" src="../storage/{{ $user->image }}">
             </div>
             <div class="driver-page-name">{{ $user->name }}</div>
             <div class="driver-page-text">

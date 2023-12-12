@@ -17,7 +17,7 @@ class IndexController extends Controller
     public function index()
     {
         return view('index', [
-            'masterClasses' => Auth::user()->master_classes ?? null
+            'registrations' => Auth::user()->registrations ?? []
         ]);
     }
 
@@ -46,7 +46,7 @@ class IndexController extends Controller
         ]);
     }
 
-    public function profile(Request $request)
+    public function profile()
     {
         if (Auth::user()->isMaster === 0) {
             return redirect()->route('index');
@@ -54,7 +54,7 @@ class IndexController extends Controller
 
         return view('profile', [
             'user' => Auth::user(),
-            'master_classes' => Auth::user()->master_classes
+            'master_classes' => Auth::user()->creator_master_classes
         ]);
     }
 
@@ -125,7 +125,7 @@ class IndexController extends Controller
 
         $masterClass = MasterClass::findOrFail($masterClassId);
 
-        if (!$masterClass->canRegister) {
+        if (!$masterClass->canRegister || Auth::user()->id === $masterClass->creatorId) {
             redirect()->route('index');
         }
 

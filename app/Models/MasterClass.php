@@ -17,7 +17,7 @@ class MasterClass extends Model
     protected $table = 'master_classes';
     protected $guarded = ['id'];
 
-    protected $appends = ['startAtLocale', 'canRegister'];
+    protected $appends = ['startAtLocale', 'canRegister', 'emptySlots'];
 
     protected $casts = [
         'startAt' => 'datetime',
@@ -49,5 +49,10 @@ class MasterClass extends Model
         $notStarted = $this->startAt->isFuture();
 
         return $hasEmptySpace && $notStarted;
+    }
+
+    public function getEmptySlotsAttribute():int
+    {
+        return $this->limit - count($this->registrations);
     }
 }

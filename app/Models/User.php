@@ -51,8 +51,13 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function master_classes():HasMany
+    public function creator_master_classes():HasMany
     {
         return $this->hasMany(MasterClass::class, 'creatorId', 'id');
+    }
+
+    public function registrations():HasMany
+    {
+        return $this->hasMany(MasterClassRegistration::class, 'userId', 'id');
     }
 }

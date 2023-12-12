@@ -59,24 +59,24 @@
         <div class="row--small">
             <h2>Расписание</h2>
             <div class="drivers">
-                @if(isset($masterClasses))
-                    @foreach ($masterClasses as $masterClass)
+                @if(count($registrations) > 0)
+                    @foreach ($registrations as $registration)
                         <div class="driver grid" style="gap: 20px;">
                             <div class="driver-right" style="display: flex; align-items: center;">
                                 @guest
                                 @else
-                                    @if($masterClass->hasRecord)
+                                    @if($registration->masterClass->hasRecord)
                                         <h1 class="driver-time" style="font-size: 16px;">
                                             Вы записаны
                                         </h1>
                                     @endif
                                 @endguest
-                                <div style="width: 150px;" class="driver-time">{{ $masterClass->startAtLocale }}</div>
+                                <div style="width: 150px;" class="driver-time">{{ $registration->masterClass->startAtLocale }}</div>
                             </div>
                             <div class="driver-left grid">
                                 <div class="driver-text" style="min-width: 625px;">
-                                    <div class="driver-name">{{ $masterClass->name }}</div>
-                                    <div class="driver-desc"> {{ $masterClass->description }}</div>
+                                    <div class="driver-name">{{ $registration->masterClass->name }}</div>
+                                    <div class="driver-desc"> {{ $registration->masterClass->description }}</div>
                                 </div>
                             </div>
                         </div>

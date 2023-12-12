@@ -35,14 +35,12 @@
         <div class="row--small">
             <h2>Расписание</h2>
             <div class="drivers">
-
                 @if($creativity->master_classes)
-
                     @foreach ($master_classes as $masterClass)
                         <div class="driver grid">
                             <div class="driver-left grid">
                                 <div class="driver-photo">
-                                    <img src="../storage/photos/{{ $masterClass->creator->image }}">
+                                    <img width="122" height="122" style="   border-radius: 50%;" src="../storage/{{ $masterClass->creator->image }}">
                                 </div>
                                 <div class="driver-text" style="min-width: 625px;">
                                     <div class="driver-name">{{ $masterClass->creator->name }}</div>
@@ -56,6 +54,10 @@
                                         <h1 class="driver-time" style="font-size: 16px;">
                                             Вы записаны
                                         </h1>
+                                    @elseif(Auth::user()->id === $masterClass->creatorId)
+                                        <h1 class="driver-time" style="font-size: 16px;">
+                                            Вы автор
+                                        </h1>
                                     @elseif($masterClass->canRegister)
                                         <form id="register-form" action="{{ route('registration', ['id' => $masterClass->id ]) }}" style="width: auto">
                                             @csrf
@@ -68,6 +70,8 @@
                                     @endif
                                 @endguest
                                 <div style="width: 150px;" class="driver-time">{{ $masterClass->startAtLocale }}</div>
+                                <div style="width: 150px; margin-top: 8px;" class="driver-time">Стоимость: {{ $masterClass->cost }}</div>
+                                <div style="width: 150px; margin-top: 8px;" class="driver-time">Свободных мест: {{ $masterClass->emptySlots }}</div>
                             </div>
                         </div>
                     @endforeach

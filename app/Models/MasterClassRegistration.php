@@ -12,12 +12,17 @@ class MasterClassRegistration extends Model
 
     protected $table = 'master_class_registrations';
     protected $guarded = ['id'];
-    protected $with = ['user'];
+    protected $with = ['user', 'masterClass'];
 
     public $timestamps = false;
 
     public function user():HasOne
     {
         return $this->hasOne(User::class, 'id', 'userId');
+    }
+
+    public function masterClass():HasOne
+    {
+        return $this->hasOne(MasterClass::class, 'id', 'masterClassId');
     }
 }

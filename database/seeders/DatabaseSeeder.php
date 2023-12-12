@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
 Данная программа не имеет аналогов среди образовательных дополнительных программ, так как впервые для изготовления макетов применяются бамбуковые палочки, в качестве основного элемента конструкции, что позволяет значительно упростить технологию создания макета и обучить начальным навыкам деревообработки.
 Актуальность предлагаемой программы состоит в том, что мастер-классы по архитектурному моделированию способствуют воспитанию художественно-эмоционального отношения к работе и творчеству, готовым изделиям; умению наблюдать и создавать образы, композиции, архитектурные ансамбли, ландшафтные построения; овладению навыками дизайна; воспитанию бережного отношения к культурному наследию своего города, России; воспитанию гордости за свой народ, поддержание  интереса к его истории и  культуре.
 На занятиях учащиеся получают теоретические знания по древнерусской архитектуре и народным традициям, изучают краеведческий материал, применяют знания на практике, создавая исторические реконструкции зданий и сооружений.',
-                'image' => 'hover.png',
+                'image' => 'modeling.jpg',
                 'created_at' => now()
             ],
             [
@@ -57,7 +57,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Елена Олеговна Блиновская',
                 'phone' => 89120000005,
-                'image' => 'driver1.png',
+                'image' => 'photos/driver1.png',
                 'created_at' => now(),
                 'email' => 'blinovskaya@ya.ru',
                 'password' => '$2y$12$imkz9a2rkqzfHIfnFeJjnes.aHKvYV1GOUoY4Z/XPHNAXguXFCOVO', //user
@@ -66,7 +66,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Аяз Шабутдинов',
                 'phone' => 89321111111,
-                'image' => 'driver3.png',
+                'image' => 'photos/driver3.png',
                 'created_at' => now(),
                 'email' => 'ayaz@gmail.com',
                 'password' => '$2y$12$imkz9a2rkqzfHIfnFeJjnes.aHKvYV1GOUoY4Z/XPHNAXguXFCOVO', //user
@@ -75,7 +75,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Оксана Валерьевна Самойлова',
                 'phone' => 89122222222,
-                'image' => 'driver2.png',
+                'image' => 'photos/driver2.png',
                 'created_at' => now(),
                 'email' => 'dzhigan@bk.ru',
                 'password' => '$2y$12$imkz9a2rkqzfHIfnFeJjnes.aHKvYV1GOUoY4Z/XPHNAXguXFCOVO', //user
