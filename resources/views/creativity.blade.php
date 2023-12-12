@@ -26,7 +26,9 @@
             <li><a href="{{ route('creativity', ['name' => 'Кулинария']) }}">Кулинария</a></li>
             <li><a href="{{ route('creativity', ['name' => 'Резьба по дереву']) }}">Резьба по дереву</a></li>
             @if(Auth::user()->isMaster ?? false)
-                <b><li><a href="{{ route('profile') }}">Профиль</a></li></b>
+                <b>
+                    <li><a href="{{ route('profile') }}">Профиль</a></li>
+                </b>
             @endif
         </ul>
     </div>
@@ -40,7 +42,8 @@
                         <div class="driver grid">
                             <div class="driver-left grid">
                                 <div class="driver-photo">
-                                    <img width="122" height="122" style="   border-radius: 50%;" src="../storage/{{ $masterClass->creator->image }}">
+                                    <img width="122" height="122" style="   border-radius: 50%;"
+                                         src="../storage/{{ $masterClass->creator->image }}">
                                 </div>
                                 <div class="driver-text" style="min-width: 625px;">
                                     <div class="driver-name">{{ $masterClass->creator->name }}</div>
@@ -59,7 +62,9 @@
                                             Вы автор
                                         </h1>
                                     @elseif($masterClass->canRegister)
-                                        <form id="register-form" action="{{ route('registration', ['id' => $masterClass->id ]) }}" style="width: auto">
+                                        <form id="register-form"
+                                              action="{{ route('registration', ['id' => $masterClass->id ]) }}"
+                                              style="width: auto">
                                             @csrf
                                             <button class="driver-btn" type="submit">Записаться</button>
                                         </form>
@@ -70,8 +75,12 @@
                                     @endif
                                 @endguest
                                 <div style="width: 150px;" class="driver-time">{{ $masterClass->startAtLocale }}</div>
-                                <div style="width: 150px; margin-top: 8px;" class="driver-time">Стоимость: {{ $masterClass->cost }}</div>
-                                <div style="width: 150px; margin-top: 8px;" class="driver-time">Свободных мест: {{ $masterClass->emptySlots }}</div>
+                                <div style="width: 150px; margin-top: 8px;" class="driver-time">
+                                    Стоимость: {{ $masterClass->cost }}</div>
+                                @if($masterClass->emptySlots > 0)
+                                    <div style="width: 150px; margin-top: 8px;" class="driver-time">Свободных
+                                        мест: {{ $masterClass->emptySlots }}</div>
+                                @endif
                             </div>
                         </div>
                     @endforeach

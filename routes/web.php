@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/', [
     IndexController::class, 'index'
-])->name('index')/*->middleware('auth')*/;
+])->name('index');
 
 Route::get('/home', [
     App\Http\Controllers\HomeController::class, 'index'

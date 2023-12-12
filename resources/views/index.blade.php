@@ -57,9 +57,9 @@
     @auth
     <div class="row shedule">
         <div class="row--small">
-            <h2>Расписание</h2>
+            <h2>Моё расписание</h2>
             <div class="drivers">
-                @if(count($registrations) > 0)
+                @if(count($registrations ?? []) > 0)
                     @foreach ($registrations as $registration)
                         <div class="driver grid" style="gap: 20px;">
                             <div class="driver-right" style="display: flex; align-items: center;">

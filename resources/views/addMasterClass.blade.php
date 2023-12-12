@@ -58,7 +58,7 @@
             </div>
             <div class="form-group">
                 <label>Дата</label>
-                <input type="date" name="date" class="form-control @error('date') is-invalid @enderror"
+                <input type="date" id="date" name="date" class="date form-control @error('date') is-invalid @enderror"
                        value="{{old('date')}}">
                 @error('date')
                 <span class="invalid-feedback" role="alert">
@@ -68,8 +68,8 @@
             </div>
             <div class="form-group">
                 <label>Время</label>
-                <input type="time" name="time" class="form-control @error('time') is-invalid @enderror"
-                       value="{{old('time')}}">
+                <input type="time" id="time" name="time" step="7200" min="09:00" max="15:00" class="form-control @error('time') is-invalid @enderror"
+                       value="{{old('time') ?? "09:00"}}">
                 @error('time')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -91,4 +91,56 @@
             </div>
         </form>
     </div>
+@endsection
+
+
+@section('js')
+    <script>
+        const blockedDates = ["2023-12-25", "2023-12-31"];
+
+        document.getElementById('date').addEventListener('input', function() {
+            const chosenDate = this.value;
+            if (blockedDates.includes(chosenDate)) {
+                this.setCustomValidity('Эта дата недоступна');
+                // Дополнительные действия, например, выделение даты как недоступной
+            } else {
+                this.setCustomValidity('');
+                // Очистка выделения и сообщений об ошибке, если они были установлены
+            }
+        });
+
+        const blockedDatesz = ["09:00", "11:00"];
+
+        document.getElementById('time').addEventListener('input', function() {
+            const chosenDate = this.value;
+            if (blockedDatesz.includes(chosenDate)) {
+                this.setCustomValidity('Эта дата недоступна');
+                // Дополнительные действия, например, выделение даты как недоступной
+            } else {
+                this.setCustomValidity('');
+                // Очистка выделения и сообщений об ошибке, если они были установлены
+            }
+        });
+
+
+        $(document).ready( function () {
+            $('.date').change(function () {
+                const item = this.value;
+
+                $.ajax({
+                    url: "123",
+                    type: 'GET',
+                    data: {
+                        courseId: item
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: (response) => {
+                        $('.table-body').html(response);
+                    }
+                })
+            })
+        })
+    </script>
 @endsection
