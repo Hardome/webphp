@@ -56,3 +56,7 @@ Route::get('/masterClass/{id}', [
 Route::put('/masterClass/{id}', [
     IndexController::class, 'updateMasterClass'
 ])->name('updateMasterClass')->middleware('auth');
+
+Route::get('/getEmptyTimeByDate', [
+    IndexController::class, 'getEmptyTimeByDate'
+])->name('getEmptyTimeByDate')->middleware('auth');

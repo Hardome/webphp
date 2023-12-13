@@ -68,6 +68,7 @@ class IndexController extends Controller
             'creativity' => Creativity::all()
         ]);
     }
+
     public function storeMasterClass(Request $request)
     {
         if (Auth::user()->isMaster === 0) {
@@ -173,5 +174,23 @@ class IndexController extends Controller
         $masterClass->save();
 
         return redirect()->route('profile');
+    }
+
+    public function getEmptyTimeByDate(Request $request)
+    {
+        if (Auth::user()->isMaster === 0) {
+            return redirect()->route('index');
+        }
+
+        $masterClasses = MasterClass::whereDate('startAt', $request['date'])->get();
+
+        $times = $masterClasses->map(
+            function ($masterClass) {
+                return Date::parse($masterClass->startAt)->format('H:i');
+            },
+            $masterClasses
+        );
+
+        return $times;
     }
 }
