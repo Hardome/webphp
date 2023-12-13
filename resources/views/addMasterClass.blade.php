@@ -98,9 +98,7 @@
 @section('js')
     <script>
         $(document).ready(function () {
-            $('.date').change(function () {
-                const date = this.value;
-
+            function checkTime(date, timeElement) {
                 $.ajax({
                     url: "getEmptyTimeByDate",
                     type: 'GET',
@@ -111,24 +109,29 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: (response) => {
-                        const timeInput = document.getElementById('time');
+                        const isTimeAvailable = !response.includes(timeElement.value);
 
-                        if (response.includes(timeInput.value)) {
-                            timeInput.setCustomValidity('Эта дата недоступна');
-                        } else {
-                            timeInput.setCustomValidity('');
-                        }
+                        timeElement.setCustomValidity(isTimeAvailable ? '' : 'Это время недоступно');
 
-                        timeInput.addEventListener('input', function () {
-                            if (response.includes(timeInput.value)) {
-                                this.setCustomValidity('Эта дата недоступна');
-                            } else {
-                                this.setCustomValidity('');
-                            }
+                        timeElement.addEventListener('input', function () {
+                            const isTimeAvailable = !response.includes(this.value);
+                            this.setCustomValidity(isTimeAvailable ? '' : 'Это время недоступно');
                         });
                     }
-                })
-            })
+                });
+            }
+
+            $('.date').change(function () {
+                const date = this.value;
+                const timeInput = document.getElementById('time');
+                checkTime(date, timeInput);
+            });
+
+            if (document.getElementById('date').value) {
+                const date = document.getElementById('date').value;
+                const timeInput = document.getElementById('time');
+                checkTime(date, timeInput);
+            }
         })
     </script>
 @endsection
