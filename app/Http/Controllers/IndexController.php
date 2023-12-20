@@ -40,6 +40,10 @@ class IndexController extends Controller
 
     public function courseAdd()
     {
+        if(Auth::user()->isAdmin === 0) {
+            return redirect()->route('index');
+        }
+
         return view('addCourse', [
             'groups' => LanguageGroup::all()
         ]);
@@ -47,8 +51,8 @@ class IndexController extends Controller
 
     public function storeCourse(Request $request)
     {
-        if (Auth::user()->role === 0) {
-            redirect()->route('index');
+        if(Auth::user()->isAdmin === 0) {
+            return redirect()->route('index');
         }
 
         $request->validate([
@@ -57,7 +61,7 @@ class IndexController extends Controller
             'startAt' => 'required',
             'image' => 'required',
             'limit' => 'required|numeric',
-            'languageGroupId' => 'required|numeric'
+            'languageGroupId' => 'required|numeric|exists:language_groups,id'
         ]);
 
         if ($request->hasFile('image')) {
@@ -78,7 +82,7 @@ class IndexController extends Controller
     {
         $course = Courses::findOrFail($id);
 
-        if (Auth::user()->role === 0) {
+        if(Auth::user()->isAdmin === 0) {
             return redirect()->route('index');
         }
 
@@ -89,6 +93,12 @@ class IndexController extends Controller
 
     public function courseRegister($id)
     {
+        $hasRecord = CoursesMembers::where('courseId', $id)->where('userId', Auth::user()->id)->count();
+
+        if ($hasRecord > 0) {
+            return redirect('index');
+        }
+
         $registration = new CoursesMembers([
             'courseId' => $id,
             'userId' => Auth::user()->id
@@ -118,6 +128,10 @@ class IndexController extends Controller
 
     public function admin()
     {
+        if(Auth::user()->isAdmin === 0) {
+            return redirect()->route('index');
+        }
+
         return view('admin', [
             'user' => Auth::user(),
             'courses' => Courses::all(),
@@ -136,6 +150,10 @@ class IndexController extends Controller
 
     public function deleteRecordInAdminPage($id)
     {
+        if(Auth::user()->isAdmin === 0) {
+            return redirect()->route('index');
+        }
+
         $record = CoursesMembers::findOrFail($id);
 
         $record->delete();
